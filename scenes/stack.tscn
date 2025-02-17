@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddhdnasqdfggj"]
+
+[ext_resource type="Texture2D" uid="uid://dm3x3inb6ufk8" path="res://textures/stack_backgrounds/stack_empty.tres" id="1_mus87"]
+[ext_resource type="Script" uid="uid://cwy8fiy8p6ahn" path="res://scripts/CardStackUI.cs" id="2_4rw1r"]
+
+[node name="Stack1" type="TextureRect"]
+texture_filter = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_bottom = -480.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_mus87")
+expand_mode = 5
+stretch_mode = 4
+script = ExtResource("2_4rw1r")
+emptyTexture = ExtResource("1_mus87")

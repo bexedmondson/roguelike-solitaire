@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://devch01ty8fnq"]
+
+[ext_resource type="Texture2D" uid="uid://x2tvxbb4pimw" path="res://textures/stack_backgrounds/foundation_diamond.tres" id="1_346er"]
+[ext_resource type="Script" uid="uid://ydkvvu4o1bim" path="res://scripts/FoundationUI.cs" id="2_346er"]
+
+[node name="Foundation1" type="TextureRect"]
+texture_filter = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_bottom = -480.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_346er")
+expand_mode = 5
+stretch_mode = 5
+script = ExtResource("2_346er")
