@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 public partial class CardStackUI : TextureRect
@@ -5,7 +6,15 @@ public partial class CardStackUI : TextureRect
     [Export]
     private Texture2D emptyTexture;
 
-    private System.Collections.Generic.Stack<Card> cards = new(); //TODO make default reasonable
+    [Export]
+    private Container cardContainer;
+
+    [Export]
+    private PackedScene cardTextureRectScene;
+
+    private System.Collections.Generic.Stack<Card> cards = new();
+
+    private List<CardUI> cardTextureRects = new();
 
     public override void _Ready() 
     {
@@ -18,7 +27,7 @@ public partial class CardStackUI : TextureRect
             return;
         }
 
-        UpdateTopTexture();
+        UpdateCardVisuals();
     }
 
     public override Variant _GetDragData(Vector2 atPosition) 
@@ -26,10 +35,12 @@ public partial class CardStackUI : TextureRect
         if (cards.Count == 0)
             return default; //don't love this, but it's a godot issue so no great alternative. tracked here: https://github.com/godotengine/godot/issues/78507
 
-        TextureRect p = new() { Texture = Texture, ExpandMode = ExpandModeEnum.IgnoreSize, StretchMode = StretchModeEnum.KeepAspect };
-        p.CustomMinimumSize = Vector2.One * 64;
+        //TextureRect p = new() { Texture = Texture, ExpandMode = ExpandModeEnum.IgnoreSize, StretchMode = StretchModeEnum.KeepAspect };
+        var preview = (Container)cardContainer.Duplicate();
+        preview.CustomMinimumSize = Vector2.One * 64;
+        preview.SetAnchorsPreset(LayoutPreset.TopRight);
         
-        SetDragPreview(p);
+        SetDragPreview(preview);
         return new CardDrag(){sourceStack = this, cards = new Godot.Collections.Array<Card>(cards)};
     }
 
@@ -42,6 +53,11 @@ public partial class CardStackUI : TextureRect
 
         if (dropData.cards.Count > 1)
             return false;
+
+        if (cards.Count == 0)
+        {
+            return dropData.cards[0].level == 13;
+        }
 
         Card currentEndCard = cards.Peek();
         
@@ -60,7 +76,7 @@ public partial class CardStackUI : TextureRect
 
         dropData.OnDrop(this);
 
-        UpdateTopTexture();
+        UpdateCardVisuals();
     }
 
     public void RemoveCards(Godot.Collections.Array<Card> cardsToRemove)
@@ -77,14 +93,31 @@ public partial class CardStackUI : TextureRect
             cards.Pop();
         }
 
-        UpdateTopTexture();
+        UpdateCardVisuals();
     }
 
-    private void UpdateTopTexture()
+    private void UpdateCardVisuals()
     {
-        if (cards.Count > 0)
-            Texture = GD.Load<Texture2D>($"res://textures/cards/{cards.Peek().suit.ToString().ToLower()}_{cards.Peek().level}.tres");
-        else
-            Texture = emptyTexture;
+        foreach (CardUI cardTextureRect in cardTextureRects)
+        {
+            cardTextureRect.QueueFree();
+        }
+        cardTextureRects.Clear();
+
+        if (cards.Count == 0)
+            return;
+        
+        var cardList = new List<Card>(cards);
+        cardList.Reverse();
+
+        foreach (Card card in cardList)
+        {
+            GD.Print($"making card {card.suit.Name()} {card.level}");
+            var cardControl = cardTextureRectScene.Instantiate<CardUI>();
+            var textureRect = cardControl.textureRect;
+            textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/{card.suit.Name()}_{card.level}.tres");
+            cardContainer.AddChild(cardControl);
+            cardTextureRects.Add(cardControl);
+        }
     }
 }
