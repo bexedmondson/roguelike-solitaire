@@ -126,13 +126,22 @@ public partial class CardStackUI : TextureRect
         for (int i = cardList.Count - 1; i >= 0; i--)
         {
             Card card = cardList[i];
+
+            if (!card.flipped && i == 0)
+                card.flipped = true;
+
             GD.Print($"making card {card.suit.Name()} {card.level}");
             var cardControl = cardTextureRectScene.Instantiate<CardUI>();
             cardControl.card = card;
             cardControl.SetStack(this);
             var textureRect = cardControl.textureRect;
             GD.Print($"trying to get texture {card.suit.Name()}_{card.level}");
-            textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/{card.suit.Name()}_{card.level}.tres");
+            if (card.flipped)
+                textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/{card.suit.Name()}_{card.level}.tres");
+            else
+                textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/card_back.tres");
+            
+            cardControl.MouseFilter = card.flipped ? MouseFilterEnum.Stop : MouseFilterEnum.Pass;
             cardContainer.AddChild(cardControl);
             cardTextureRects.Add(cardControl);
         }

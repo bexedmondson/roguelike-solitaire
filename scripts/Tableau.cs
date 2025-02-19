@@ -47,6 +47,7 @@ public class Tableau
                 stacks[i].Add(deck[0]);
                 deck.RemoveAt(0);
             } 
+            stacks[i][^1].flipped = true;
         }
     }
 }
