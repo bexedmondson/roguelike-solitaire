@@ -1,13 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk4rlnahlcxa3"]
+[gd_scene load_steps=3 format=3 uid="uid://bk4rlnahlcxa3"]
 
 [ext_resource type="Script" uid="uid://dvb61udi1iw4m" path="res://scripts/CardUI.cs" id="1_lfdei"]
+[ext_resource type="PackedScene" uid="uid://brjg4bfklb875" path="res://scenes/drag_card_stack_container.tscn" id="2_15xuq"]
 
 [node name="CardTextureRect" type="Control" node_paths=PackedStringArray("textureRect")]
 layout_mode = 3
 anchors_preset = 0
-mouse_filter = 1
 script = ExtResource("1_lfdei")
 textureRect = NodePath("TextureRect")
+stackContainerScene = ExtResource("2_15xuq")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
