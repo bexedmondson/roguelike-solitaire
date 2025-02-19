@@ -16,17 +16,9 @@ public partial class CardStackUI : TextureRect
 
     private List<CardUI> cardTextureRects = new();
 
-    public override void _Ready() 
+    public void SetCards(List<Card> cards)
     {
-        //temp for testing
-        cards.Add(new Card());
-
-
-        if (cards.Count < 1)
-        {
-            return;
-        }
-
+        this.cards = cards;
         UpdateCardVisuals();
     }
 

@@ -1,18 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://dackwo5gts6w3"]
+[gd_scene load_steps=7 format=3 uid="uid://dackwo5gts6w3"]
 
+[ext_resource type="Script" uid="uid://cy6cxfoecx1m5" path="res://scripts/SolitaireGameUI.cs" id="1_e17pb"]
 [ext_resource type="PackedScene" uid="uid://devch01ty8fnq" path="res://scenes/foundation.tscn" id="1_jtt5i"]
 [ext_resource type="PackedScene" uid="uid://ddhdnasqdfggj" path="res://scenes/stack.tscn" id="2_4tnd8"]
 [ext_resource type="Texture2D" uid="uid://0hhbg6t10pyp" path="res://textures/stack_backgrounds/foundation_heart.tres" id="2_gudf5"]
 [ext_resource type="Texture2D" uid="uid://bkxylkh51t5le" path="res://textures/stack_backgrounds/foundation_club.tres" id="3_e17pb"]
 [ext_resource type="Texture2D" uid="uid://c55jrxnfjf25p" path="res://textures/stack_backgrounds/foundation_spade.tres" id="4_otdc4"]
 
-[node name="GameRound" type="Control"]
+[node name="GameRound" type="Control" node_paths=PackedStringArray("stackUIs")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_e17pb")
+stackUIs = [NodePath("Tableau/Stacks/Stack1"), NodePath("Tableau/Stacks/Stack2"), NodePath("Tableau/Stacks/Stack3"), NodePath("Tableau/Stacks/Stack4"), NodePath("Tableau/Stacks/Stack5"), NodePath("Tableau/Stacks/Stack6"), NodePath("Tableau/Stacks/Stack7")]
 
 [node name="CardPiles" type="Control" parent="."]
 layout_mode = 1
