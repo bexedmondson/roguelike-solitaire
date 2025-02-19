@@ -5,6 +5,9 @@ public partial class SolitaireGameUI : Control
     [Export]
     private Godot.Collections.Array<CardStackUI> stackUIs;
 
+    [Export]
+    private CardStackUI deck;
+
     private Tableau tableau;
 
     public override void _EnterTree()
@@ -17,5 +20,7 @@ public partial class SolitaireGameUI : Control
             var stack = tableau.stacks[i];
             stackUIs[i].SetCards(stack);
         }
+
+        deck.SetCards(tableau.deck);
     }
 }

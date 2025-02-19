@@ -17,6 +17,15 @@ public partial class CardUI : Control
         this.cardStackUI = cardStackUI;
     }
 
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (@event.IsReleased())
+        {
+            GD.Print("input");
+            cardStackUI._GuiInput(@event);
+        }
+    }
+
     public override Variant _GetDragData(Vector2 atPosition) 
     {
         var stackContainerPreview = stackContainerScene.Instantiate<Container>(); 

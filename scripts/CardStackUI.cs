@@ -12,7 +12,7 @@ public partial class CardStackUI : TextureRect
     [Export]
     private PackedScene cardTextureRectScene;
 
-    private System.Collections.Generic.List<Card> cards = new();
+    protected System.Collections.Generic.List<Card> cards = new();
 
     private List<CardUI> cardTextureRects = new();
 
@@ -109,7 +109,7 @@ public partial class CardStackUI : TextureRect
         UpdateCardVisuals();
     }
 
-    private void UpdateCardVisuals()
+    protected void UpdateCardVisuals()
     {
         foreach (CardUI cardTextureRect in cardTextureRects)
         {
