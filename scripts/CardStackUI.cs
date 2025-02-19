@@ -41,8 +41,26 @@ public partial class CardStackUI : TextureRect
         if (dragCards.Count > 1)
             GD.Print($"  {dragCards[1].suit}{dragCards[1].level}");
 
+        foreach (CardUI cardUI in cardTextureRects)
+        {
+            if (dragCards.Contains(cardUI.card))
+            {
+                cardUI.Visible = false;
+            }
+        }
 
         return new CardDrag(){sourceStack = this, cards = new Godot.Collections.Array<Card>(dragCards)};
+    }
+
+    public override void _Notification(int notification)
+    {
+        if (notification == NotificationDragEnd && !IsDragSuccessful())
+        {
+            foreach (CardUI cardUI in cardTextureRects)
+            {
+                cardUI.Visible = true;
+            }
+        }
     }
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)

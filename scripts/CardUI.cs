@@ -22,10 +22,19 @@ public partial class CardUI : Control
         var stackContainerPreview = stackContainerScene.Instantiate<Container>(); 
         stackContainerPreview.CustomMinimumSize = Vector2.One * 64;
         stackContainerPreview.SetAnchorsPreset(LayoutPreset.TopRight);
+
+        var stackDragData = cardStackUI.GetDragData(this);
+        foreach (var card in stackDragData.cards)
+        {
+            var newCardUI = (CardUI)this.Duplicate();
+            newCardUI.Visible = true;
+            newCardUI.textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/{card.suit.Name()}_{card.level}.tres");
+            stackContainerPreview.AddChild(newCardUI);
+        }
         
         SetDragPreview(stackContainerPreview);
 
-        return cardStackUI.GetDragData(this);
+        return stackDragData;
     }
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
