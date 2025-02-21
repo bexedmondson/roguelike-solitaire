@@ -24,17 +24,24 @@ public partial class CardStackUI : TextureRect
 
     public CardDrag GetDragData(CardUI selectedCard)
     {
-        GD.Print($"selectedcard {selectedCard.card.suit}{selectedCard.card.level}");
-        GD.Print($"index {cards.IndexOf(selectedCard.card)}, lastindex {cards.Count - 1}");
+        //GD.Print($"selectedcard {selectedCard.card.suit}{selectedCard.card.level}");
+        //GD.Print($"index {cards.IndexOf(selectedCard.card)}, lastindex {cards.Count - 1}");
         int selectedCardIndex = cards.IndexOf(selectedCard.card);
-        var dragCards = cards.GetRange(selectedCardIndex, cards.Count - selectedCardIndex);
+        var dragCards = cards.GetRange(0, selectedCardIndex+1);//, cards.Count - selectedCardIndex);
 
-        GD.Print($"drag count {dragCards.Count} {dragCards[0].suit}{dragCards[0].level}");
+        //GD.Print($"drag count {dragCards.Count} {dragCards[0].suit}{dragCards[0].level}");
         if (dragCards.Count > 1)
-            GD.Print($"  {dragCards[1].suit}{dragCards[1].level}");
+            //GD.Print($"  {dragCards[1].suit}{dragCards[1].level}");
+
+        if (cardTextureRects == null || cardTextureRects.Count == 0)
+        {
+            //GD.PrintErr("stack empty!");
+        }
 
         foreach (CardUI cardUI in cardTextureRects)
         {
+            //if (cardUI == null)
+                //GD.PrintErr("card null!");
             if (dragCards.Contains(cardUI.card))
             {
                 cardUI.Visible = false;
@@ -64,14 +71,14 @@ public partial class CardStackUI : TextureRect
 
         if (cards.Count == 0)
         {
-            return dropData.cards[0].level == 13;
+            return dropData.cards[^1].level == 13;
         }
 
-        Card currentEndCard = cards[^1];
-        GD.Print($"current stack end card {currentEndCard.suit} {currentEndCard.level}");
+        Card currentEndCard = cards[0];
+        //GD.Print($"current stack end card {currentEndCard.suit} {currentEndCard.level}");
         
-        var card = dropData.cards[0];
-        GD.Print($"current drop card {card.suit} {card.level}");
+        var card = dropData.cards[^1];
+        //GD.Print($"current drop card {card.suit} {card.level}");
         if (!card.suit.CanStackOnSuit(currentEndCard.suit))
             return false;
         
@@ -82,9 +89,10 @@ public partial class CardStackUI : TextureRect
     {
         var dropData = (CardDrag)data.AsGodotObject();
 
-        foreach (Card newCard in dropData.cards)
+        for (int i = dropData.cards.Count - 1; i >= 0; i--)
         {
-            cards.Add(newCard); //TODO worth doing extra checks? or are the checks in CanDropData enough. hmm
+            Card newCard = dropData.cards[i];
+            cards.Insert(0, newCard); //TODO worth doing extra checks? or are the checks in CanDropData enough. hmm
         }
 
         dropData.OnDrop(this);
@@ -94,11 +102,11 @@ public partial class CardStackUI : TextureRect
 
     public void RemoveCards(Godot.Collections.Array<Card> cardsToRemove)
     {
-        GD.Print($"removing cards from stack: {cardsToRemove.Count}, stack count {cards.Count}");
-        for (int i = cardsToRemove.Count - 1; i >= 0; i--)
+        //GD.Print($"removing cards from stack: {cardsToRemove.Count}, stack count {cards.Count}");
+        for (int i = 0; i < cardsToRemove.Count; i++)
         {
             Card card = cardsToRemove[i];
-            if (cards[^1] != card)
+            if (cards[0] != card)
             {
                 GD.PushError("trying to pop card from stack that isn't at the end?? stopping here");
                 break;
@@ -119,23 +127,17 @@ public partial class CardStackUI : TextureRect
 
         if (cards.Count == 0)
             return;
-        
-        var cardList = new List<Card>(cards);
-        cardList.Reverse();
 
-        for (int i = cardList.Count - 1; i >= 0; i--)
+        UpdateCardFlipStatus();
+
+        foreach (Card card in cards)
         {
-            Card card = cardList[i];
-
-            if (!card.flipped && i == 0)
-                card.flipped = true;
-
-            GD.Print($"making card {card.suit.Name()} {card.level}");
+            //GD.Print($"making card {card.suit.Name()} {card.level}");
             var cardControl = cardTextureRectScene.Instantiate<CardUI>();
             cardControl.card = card;
             cardControl.SetStack(this);
             var textureRect = cardControl.textureRect;
-            GD.Print($"trying to get texture {card.suit.Name()}_{card.level}");
+            //GD.Print($"trying to get texture {card.suit.Name()}_{card.level}");
             if (card.flipped)
                 textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/{card.suit.Name()}_{card.level}.tres");
             else
@@ -143,7 +145,14 @@ public partial class CardStackUI : TextureRect
             
             cardControl.MouseFilter = card.flipped ? MouseFilterEnum.Stop : MouseFilterEnum.Pass;
             cardContainer.AddChild(cardControl);
+            cardContainer.MoveChild(cardControl, 0);
             cardTextureRects.Add(cardControl);
         }
+    }
+
+    protected virtual void UpdateCardFlipStatus()
+    {
+        if (!cards[0].flipped)
+            cards[0].flipped = true;
     }
 }

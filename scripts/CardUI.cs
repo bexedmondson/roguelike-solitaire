@@ -16,13 +16,36 @@ public partial class CardUI : Control
     {
         this.cardStackUI = cardStackUI;
     }
-
-    public override void _GuiInput(InputEvent @event)
+ 
+   /* public override void _GuiInput(InputEvent @event)
     {
         if (@event.IsReleased())
         {
-            GD.Print("input");
             cardStackUI._GuiInput(@event);
+        }
+    }*/
+
+    bool mouseOn = false;
+
+    public void ClickStart()
+    {
+        //GD.Print("mouse on");
+        mouseOn = true;
+    }
+
+    public void MouseExit()
+    {
+        //GD.Print("mouse on");
+        mouseOn = false;
+    }
+
+    public void ClickEnd()
+    {
+        //GD.Print("click end");
+        if (mouseOn && cardStackUI is CardDeckUI cardDeckUI)
+        {
+            mouseOn = false;
+            cardDeckUI.OnClick();
         }
     }
 

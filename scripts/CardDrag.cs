@@ -10,7 +10,7 @@ public partial class CardDrag : GodotObject
 
     public void OnDrop(object dropTarget)
     {
-        GD.Print($"on drop, source {sourceStack.Name}, target {dropTarget}");
+        //GD.Print($"on drop, source {sourceStack.Name}, target {dropTarget}");
 
         sourceStack.RemoveCards(cards);
     }
