@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddhdnasqdfggj"]
 
 [ext_resource type="Texture2D" uid="uid://dm3x3inb6ufk8" path="res://textures/stack_backgrounds/stack_empty.tres" id="1_mus87"]
-[ext_resource type="Script" uid="uid://cwy8fiy8p6ahn" path="res://scripts/CardStackUI.cs" id="2_4rw1r"]
+[ext_resource type="Script" uid="uid://cwy8fiy8p6ahn" path="res://scripts/gameboardui/CardStackUI.cs" id="2_4rw1r"]
 [ext_resource type="PackedScene" uid="uid://bk4rlnahlcxa3" path="res://scenes/card_texture_rect.tscn" id="3_4rw1r"]
 
 [node name="Stack1" type="TextureRect" node_paths=PackedStringArray("cardContainer")]

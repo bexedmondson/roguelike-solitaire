@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://devch01ty8fnq"]
 
 [ext_resource type="Texture2D" uid="uid://x2tvxbb4pimw" path="res://textures/stack_backgrounds/foundation_diamond.tres" id="1_346er"]
-[ext_resource type="Script" uid="uid://ydkvvu4o1bim" path="res://scripts/FoundationUI.cs" id="2_346er"]
+[ext_resource type="Script" uid="uid://ydkvvu4o1bim" path="res://scripts/gameboardui/FoundationUI.cs" id="2_346er"]
 
 [node name="Foundation1" type="TextureRect"]
 texture_filter = 1

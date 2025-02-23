@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class FoundationUI : TextureRect
 {
@@ -7,6 +9,8 @@ public partial class FoundationUI : TextureRect
     private Suit suit = Suit.Diamond;
 
     private System.Collections.Generic.List<Card> cards = new();
+
+    public event Action OnFoundationUpdated;
 
     public override void _Ready() 
     {
@@ -43,5 +47,27 @@ public partial class FoundationUI : TextureRect
         dropData.OnDrop(this);
 
         Texture = GD.Load<Texture2D>($"res://textures/cards/{suit.ToString().ToLower()}_{cards[cards.Count - 1].level}.tres");
+
+        OnFoundationUpdated?.Invoke();
+    }
+
+    private List<Card> m_helperCardList = new();
+    public bool IsReady()
+    {
+        m_helperCardList = cards;
+        for (int i = 0; i < 13; i++)
+        {
+            var found = m_helperCardList.FirstOrDefault(card => card.level == i);
+            if (found != default(Card))
+            {
+                m_helperCardList.Remove(found);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

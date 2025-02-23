@@ -1,17 +1,17 @@
 [gd_scene load_steps=11 format=3 uid="uid://dackwo5gts6w3"]
 
-[ext_resource type="Script" uid="uid://cy6cxfoecx1m5" path="res://scripts/SolitaireGameUI.cs" id="1_e17pb"]
+[ext_resource type="Script" uid="uid://cy6cxfoecx1m5" path="res://scripts/gameboardui/SolitaireGameUI.cs" id="1_e17pb"]
 [ext_resource type="PackedScene" uid="uid://devch01ty8fnq" path="res://scenes/foundation.tscn" id="1_jtt5i"]
 [ext_resource type="PackedScene" uid="uid://ddhdnasqdfggj" path="res://scenes/stack.tscn" id="2_4tnd8"]
 [ext_resource type="Texture2D" uid="uid://dm3x3inb6ufk8" path="res://textures/stack_backgrounds/stack_empty.tres" id="2_88ydg"]
 [ext_resource type="Texture2D" uid="uid://0hhbg6t10pyp" path="res://textures/stack_backgrounds/foundation_heart.tres" id="2_gudf5"]
 [ext_resource type="Texture2D" uid="uid://bkxylkh51t5le" path="res://textures/stack_backgrounds/foundation_club.tres" id="3_e17pb"]
-[ext_resource type="Script" uid="uid://c4t8pybh6e6x6" path="res://scripts/CardDeckUI.cs" id="3_otdc4"]
+[ext_resource type="Script" uid="uid://c4t8pybh6e6x6" path="res://scripts/gameboardui/CardDeckUI.cs" id="3_otdc4"]
 [ext_resource type="Texture2D" uid="uid://c55jrxnfjf25p" path="res://textures/stack_backgrounds/foundation_spade.tres" id="4_otdc4"]
 [ext_resource type="Texture2D" uid="uid://d1f3wuyc5733c" path="res://textures/cards/card_back.tres" id="4_psb27"]
 [ext_resource type="PackedScene" uid="uid://bk4rlnahlcxa3" path="res://scenes/card_texture_rect.tscn" id="5_6ebo5"]
 
-[node name="GameRound" type="Control" node_paths=PackedStringArray("stackUIs", "deck")]
+[node name="GameRound" type="Control" node_paths=PackedStringArray("stackUIs", "foundationUIs", "deck")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e17pb")
 stackUIs = [NodePath("Tableau/Stacks/Stack1"), NodePath("Tableau/Stacks/Stack2"), NodePath("Tableau/Stacks/Stack3"), NodePath("Tableau/Stacks/Stack4"), NodePath("Tableau/Stacks/Stack5"), NodePath("Tableau/Stacks/Stack6"), NodePath("Tableau/Stacks/Stack7")]
+foundationUIs = [NodePath("CardPiles/Foundations/Foundation1"), NodePath("CardPiles/Foundations/Foundation2"), NodePath("CardPiles/Foundations/Foundation3"), NodePath("CardPiles/Foundations/Foundation4")]
 deck = NodePath("CardPiles/Deck/Deck")
 
 [node name="CardPiles" type="Control" parent="."]
@@ -51,8 +52,8 @@ expand_mode = 5
 stretch_mode = 4
 script = ExtResource("3_otdc4")
 emptyTexture = ExtResource("4_psb27")
-cardContainer = NodePath("CardStackContainer")
 cardTextureRectScene = ExtResource("5_6ebo5")
+cardContainer = NodePath("CardStackContainer")
 
 [node name="CardStackContainer" type="VBoxContainer" parent="CardPiles/Deck/Deck"]
 layout_mode = 0
