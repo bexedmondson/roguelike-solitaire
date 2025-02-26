@@ -3,6 +3,15 @@ using Godot;
 
 public class DrawPile : Stack
 {
+    public DrawPile()
+    {
+        m_cards = new();
+    }
+    
+    protected DrawPile(List<Card> cards) : base(cards)
+    {
+    }
+
     public void Add(Card card)
     {
         m_cards.Add(card);
@@ -34,5 +43,14 @@ public class DrawPile : Stack
         } 
 
         return dealtCards;
+    }
+
+    protected override void UpdateCardFlipStatus()
+    {
+        foreach (var card in m_cards)
+        {
+            if (card.flipped)
+                card.flipped = false;
+        }
     }
 }

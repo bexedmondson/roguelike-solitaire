@@ -11,6 +11,9 @@ public partial class SolitaireGameUI : Control
     [Export]
     private CardStackUI drawPileUI;
 
+    [Export]
+    private CardStackUI discardPileUI;
+
     private Tableau tableau;
 
     public override void _EnterTree()
@@ -30,6 +33,8 @@ public partial class SolitaireGameUI : Control
         }
 
         drawPileUI.InitialiseWithStack(tableau.drawPile);
+
+        discardPileUI.InitialiseWithStack(tableau.discardPile);
     }
 
     public void OnFoundationUpdated()

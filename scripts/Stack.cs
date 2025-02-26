@@ -21,9 +21,9 @@ public class Stack
         InternalOnStackUpdated();
     }
 
-    public void AddCards(Godot.Collections.Array<Card> droppedCards)
+    public void AddCards(IEnumerable<Card> droppedCards)
     {
-        m_cards.AddRange(droppedCards);
+        m_cards.InsertRange(0, droppedCards);
 
         InternalOnStackUpdated();
     }
@@ -38,7 +38,7 @@ public class Stack
         InternalOnStackUpdated();
     }
 
-    private void InternalOnStackUpdated()
+    protected void InternalOnStackUpdated()
     {
         UpdateCardFlipStatus();
         OnStackUpdated?.Invoke();

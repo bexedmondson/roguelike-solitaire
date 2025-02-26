@@ -13,6 +13,8 @@ public class Tableau : IInjectable
     public Tableau()
     {
         stacks = new List<Stack>();
+        drawPile = new DrawPile();
+        discardPile = new DiscardPile();
 
         for (int i = 1; i <= 13; i++)
         {
@@ -42,5 +44,11 @@ public class Tableau : IInjectable
         //GD.Print($"on drop, source {sourceStack.Name}, target {dropTarget}");
         sourceStack.RemoveCards(cards);
         targetStack.AddCards(cards);
+    }
+
+    public void FlipDeck()
+    {
+        var cardsToFlip = discardPile.GetCardsAndClear();
+        drawPile.AddCards(cardsToFlip);
     }
 }

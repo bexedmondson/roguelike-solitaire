@@ -53,7 +53,7 @@ public partial class CardUI : Control
     {
         //GD.Print("clickend is " + timeSinceLastClick);
         //GD.Print("click end");
-        if (mouseOn && timeSinceLastClick > clickThreshold && cardStackUI is CardDeckUI cardDeckUI)
+        if (mouseOn && timeSinceLastClick > clickThreshold && cardStackUI is DrawPileUI cardDeckUI)
         {
             mouseOn = false;
             timeSinceLastClick = 0;

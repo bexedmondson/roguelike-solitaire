@@ -79,9 +79,6 @@ public partial class CardStackUI : TextureRect
     public override void _DropData(Vector2 atPosition, Variant data) 
     {
         var dropData = (CardDrag)data.AsGodotObject();
-
-        stack.AddCards(dropData.cards);
-
         dropData.DoCardDrop(stack);
     }
 
