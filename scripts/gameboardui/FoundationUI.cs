@@ -55,7 +55,8 @@ public partial class FoundationUI : TextureRect
     public bool IsReady()
     {
         m_helperCardList = cards;
-        for (int i = 0; i < 13; i++)
+        //card levels start at 1:
+        for (int i = 1; i <= 13; i++)
         {
             var found = m_helperCardList.FirstOrDefault(card => card.level == i);
             if (found != default(Card))
@@ -64,6 +65,7 @@ public partial class FoundationUI : TextureRect
             }
             else
             {
+                GD.Print(this.suit.Name() + " not ready, missing card " + i);
                 return false;
             }
         }

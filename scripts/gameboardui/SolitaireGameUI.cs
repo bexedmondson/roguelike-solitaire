@@ -34,6 +34,7 @@ public partial class SolitaireGameUI : Control
 
     public void OnFoundationUpdated()
     {
+        GD.Print("on foundation updated");
         foreach (FoundationUI foundationUI in foundationUIs)
         {
             if (!foundationUI.IsReady())

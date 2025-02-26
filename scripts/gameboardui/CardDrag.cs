@@ -6,7 +6,7 @@ public partial class CardDrag : GodotObject
 {
     public CardStackUI sourceStack;
 
-    public Godot.Collections.Array<Card> cards;
+    public Godot.Collections.Array<Card> cards = new();
 
     public void OnDrop(object dropTarget)
     {

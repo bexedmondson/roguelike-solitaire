@@ -12,6 +12,8 @@ public partial class CardStackUI : TextureRect
     [Export]
     private PackedScene cardTextureRectScene;
 
+    public virtual bool CanDrag => true;
+
     protected System.Collections.Generic.List<Card> cards = new();
 
     private List<CardUI> cardTextureRects = new();
@@ -22,7 +24,7 @@ public partial class CardStackUI : TextureRect
         UpdateCardVisuals();
     }
 
-    public CardDrag GetDragData(CardUI selectedCard)
+    public virtual CardDrag GetDragData(CardUI selectedCard)
     {
         //GD.Print($"selectedcard {selectedCard.card.suit}{selectedCard.card.level}");
         //GD.Print($"index {cards.IndexOf(selectedCard.card)}, lastindex {cards.Count - 1}");
@@ -30,7 +32,7 @@ public partial class CardStackUI : TextureRect
         var dragCards = cards.GetRange(0, selectedCardIndex+1);//, cards.Count - selectedCardIndex);
 
         //GD.Print($"drag count {dragCards.Count} {dragCards[0].suit}{dragCards[0].level}");
-        if (dragCards.Count > 1)
+        //if (dragCards.Count > 1)
             //GD.Print($"  {dragCards[1].suit}{dragCards[1].level}");
 
         if (cardTextureRects == null || cardTextureRects.Count == 0)
@@ -64,6 +66,7 @@ public partial class CardStackUI : TextureRect
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
+        GD.Print(data);
         if (data.VariantType != Variant.Type.Object)
             return false;
 
@@ -75,10 +78,10 @@ public partial class CardStackUI : TextureRect
         }
 
         Card currentEndCard = cards[0];
-        //GD.Print($"current stack end card {currentEndCard.suit} {currentEndCard.level}");
+        GD.Print($"current stack end card {currentEndCard.suit} {currentEndCard.level}");
         
         var card = dropData.cards[^1];
-        //GD.Print($"current drop card {card.suit} {card.level}");
+        GD.Print($"current drop card {card.suit} {card.level}");
         if (!card.suit.CanStackOnSuit(currentEndCard.suit))
             return false;
         

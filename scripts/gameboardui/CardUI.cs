@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class CardUI : Control
@@ -16,41 +17,57 @@ public partial class CardUI : Control
     {
         this.cardStackUI = cardStackUI;
     }
- 
-   /* public override void _GuiInput(InputEvent @event)
-    {
-        if (@event.IsReleased())
-        {
-            cardStackUI._GuiInput(@event);
-        }
-    }*/
 
-    bool mouseOn = false;
+    private bool mouseOn = false;
+    private double timeSinceLastClick = 0;
+    private const double clickThreshold = 0.5;
+
+    public override void _Process(double delta)
+    {
+        if (!mouseOn && timeSinceLastClick < clickThreshold)
+        {
+            timeSinceLastClick += delta;
+        }
+    }
 
     public void ClickStart()
     {
+        //GD.Print("mouseOn is " + timeSinceLastClick);
+        //if it's been less than the threshold since the last click, this is a double click and we don't want to click again
+        if (mouseOn || timeSinceLastClick < clickThreshold)
+            return;
+
         //GD.Print("mouse on");
         mouseOn = true;
     }
 
     public void MouseExit()
     {
+        //GD.Print("mouseExit is " + timeSinceLastClick);
         //GD.Print("mouse on");
         mouseOn = false;
+        timeSinceLastClick = 0;
     }
 
     public void ClickEnd()
     {
+        //GD.Print("clickend is " + timeSinceLastClick);
         //GD.Print("click end");
-        if (mouseOn && cardStackUI is CardDeckUI cardDeckUI)
+        if (mouseOn && timeSinceLastClick > clickThreshold && cardStackUI is CardDeckUI cardDeckUI)
         {
             mouseOn = false;
+            timeSinceLastClick = 0;
             cardDeckUI.OnClick();
         }
     }
 
     public override Variant _GetDragData(Vector2 atPosition) 
     {
+        if (!this.card.flipped)
+        {
+            return default(Variant);
+        }
+
         var stackContainerPreview = stackContainerScene.Instantiate<Container>(); 
         stackContainerPreview.CustomMinimumSize = Vector2.One * 64;
         stackContainerPreview.SetAnchorsPreset(LayoutPreset.TopRight);

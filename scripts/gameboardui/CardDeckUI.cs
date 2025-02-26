@@ -2,16 +2,27 @@ using Godot;
 
 public partial class CardDeckUI : CardStackUI
 {
+    [Export]
+    private DiscardPileUI discardPileUI;
+
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
         return false;
+    }
+
+    public override CardDrag GetDragData(CardUI selectedCard)
+    {
+        return default(CardDrag);
     }
 
     public void OnClick()
     {
         //GD.Print("deck input");
         if (cards.Count == 0)
+        {
+            FlipDeck();
             return;
+        }
         
         GD.Print("deck before:");
 
@@ -22,7 +33,7 @@ public partial class CardDeckUI : CardStackUI
 
         var temp = cards[^1];
         cards.RemoveAt(cards.Count - 1);
-        cards.Insert(0, temp);
+        discardPileUI.AddCard(temp);
 
         UpdateCardVisuals();
 
@@ -31,6 +42,22 @@ public partial class CardDeckUI : CardStackUI
         foreach (Card card in cards)
         {
             GD.Print($"  {card.suit.Name()}{card.level}");
+        }
+    }
+
+    private void FlipDeck()
+    {
+        var discardPile = discardPileUI.GetDiscardPileAndClear();
+        cards.AddRange(discardPile);
+        UpdateCardVisuals();
+    }
+
+    protected override void UpdateCardFlipStatus()
+    {
+        foreach (var card in cards)
+        {
+            if (card.flipped)
+                card.flipped = false;
         }
     }
 }
