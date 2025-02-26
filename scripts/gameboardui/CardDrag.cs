@@ -1,17 +1,23 @@
 
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public partial class CardDrag : GodotObject
 {
-    public CardStackUI sourceStack;
+    public Stack sourceStack;
 
     public Godot.Collections.Array<Card> cards = new();
 
-    public void OnDrop(object dropTarget)
+    public void InitialiseCardDrag(Stack sourceStack, List<Card> cards)
     {
-        //GD.Print($"on drop, source {sourceStack.Name}, target {dropTarget}");
+        this.sourceStack = sourceStack;
+        this.cards = new Godot.Collections.Array<Card>(cards);
+    }
 
-        sourceStack.RemoveCards(cards);
+    public void DoCardDrop(Stack targetStack)
+    {
+        var tableau = InjectionManager.Get<Tableau>();
+        tableau.MoveCards(sourceStack, targetStack, cards);
     }
 }

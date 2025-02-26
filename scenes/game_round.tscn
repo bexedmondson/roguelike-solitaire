@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bk4rlnahlcxa3" path="res://scenes/card_texture_rect.tscn" id="5_6ebo5"]
 [ext_resource type="Script" uid="uid://bujpvimoqxdqp" path="res://scripts/gameboardui/DiscardPileUI.cs" id="6_6ebo5"]
 
-[node name="GameRound" type="Control" node_paths=PackedStringArray("stackUIs", "foundationUIs", "deck")]
+[node name="GameRound" type="Control" node_paths=PackedStringArray("stackUIs", "foundationUIs", "drawPileUI")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_vertical = 2
 script = ExtResource("1_e17pb")
 stackUIs = [NodePath("Tableau/Stacks/Stack1"), NodePath("Tableau/Stacks/Stack2"), NodePath("Tableau/Stacks/Stack3"), NodePath("Tableau/Stacks/Stack4"), NodePath("Tableau/Stacks/Stack5"), NodePath("Tableau/Stacks/Stack6"), NodePath("Tableau/Stacks/Stack7")]
 foundationUIs = [NodePath("CardPiles/Foundations/Foundation1"), NodePath("CardPiles/Foundations/Foundation2"), NodePath("CardPiles/Foundations/Foundation3"), NodePath("CardPiles/Foundations/Foundation4")]
-deck = NodePath("CardPiles/Deck/Deck")
+drawPileUI = NodePath("CardPiles/Draw/DrawPile")
 
 [node name="CardPiles" type="Control" parent="."]
 layout_mode = 1
@@ -30,13 +30,13 @@ anchor_right = 1.0
 anchor_bottom = 0.3
 grow_horizontal = 2
 
-[node name="Deck" type="Control" parent="CardPiles"]
+[node name="Draw" type="Control" parent="CardPiles"]
 layout_mode = 1
 anchor_right = 0.15
 anchor_bottom = 1.0
 grow_vertical = 2
 
-[node name="Deck" type="TextureRect" parent="CardPiles/Deck" node_paths=PackedStringArray("discardPileUI", "cardContainer")]
+[node name="DrawPile" type="TextureRect" parent="CardPiles/Draw" node_paths=PackedStringArray("discardPileUI", "cardContainer")]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -57,7 +57,7 @@ emptyTexture = ExtResource("4_psb27")
 cardContainer = NodePath("CardStackContainer")
 cardTextureRectScene = ExtResource("5_6ebo5")
 
-[node name="Button" type="Button" parent="CardPiles/Deck/Deck"]
+[node name="Button" type="Button" parent="CardPiles/Draw/DrawPile"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,7 +66,7 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="CardStackContainer" type="VBoxContainer" parent="CardPiles/Deck/Deck"]
+[node name="CardStackContainer" type="VBoxContainer" parent="CardPiles/Draw/DrawPile"]
 layout_mode = 0
 anchor_right = 1.0
 grow_horizontal = 2
@@ -176,4 +176,4 @@ layout_mode = 2
 [node name="Stack7" parent="Tableau/Stacks" instance=ExtResource("2_4tnd8")]
 layout_mode = 2
 
-[connection signal="button_up" from="CardPiles/Deck/Deck/Button" to="CardPiles/Deck/Deck" method="OnClick"]
+[connection signal="button_up" from="CardPiles/Draw/DrawPile/Button" to="CardPiles/Draw/DrawPile" method="OnClick"]

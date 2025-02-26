@@ -18,7 +18,7 @@ public partial class CardDeckUI : CardStackUI
     public void OnClick()
     {
         //GD.Print("deck input");
-        if (cards.Count == 0)
+        if (stack.IsEmpty)
         {
             FlipDeck();
             return;
@@ -26,20 +26,20 @@ public partial class CardDeckUI : CardStackUI
         
         GD.Print("deck before:");
 
-        foreach (Card card in cards)
+        foreach (Card card in stack.cards)
         {
             GD.Print($"  {card.suit.Name()}{card.level}");
         }
 
-        var temp = cards[^1];
-        cards.RemoveAt(cards.Count - 1);
+        var temp = stack.cards[^1];
+        stack.cards.RemoveAt(stack.cards.Count - 1);
         discardPileUI.AddCard(temp);
 
         UpdateCardVisuals();
 
         GD.Print("deck after:");
 
-        foreach (Card card in cards)
+        foreach (Card card in stack.cards)
         {
             GD.Print($"  {card.suit.Name()}{card.level}");
         }
@@ -48,13 +48,13 @@ public partial class CardDeckUI : CardStackUI
     private void FlipDeck()
     {
         var discardPile = discardPileUI.GetDiscardPileAndClear();
-        cards.AddRange(discardPile);
+        stack.cards.AddRange(discardPile);
         UpdateCardVisuals();
     }
 
-    protected override void UpdateCardFlipStatus()
+    protected  void UpdateCardFlipStatus()
     {
-        foreach (var card in cards)
+        foreach (var card in stack.cards)
         {
             if (card.flipped)
                 card.flipped = false;

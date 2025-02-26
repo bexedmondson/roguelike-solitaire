@@ -9,7 +9,7 @@ public partial class SolitaireGameUI : Control
     private Godot.Collections.Array<FoundationUI> foundationUIs;
 
     [Export]
-    private CardStackUI deck;
+    private CardStackUI drawPileUI;
 
     private Tableau tableau;
 
@@ -21,7 +21,7 @@ public partial class SolitaireGameUI : Control
         for (int i = 0; i < tableau.stacks.Count; i++)
         {
             var stack = tableau.stacks[i];
-            stackUIs[i].SetCards(stack);
+            stackUIs[i].InitialiseWithStack(stack);
         }
 
         foreach (FoundationUI foundationUI in foundationUIs)
@@ -29,7 +29,7 @@ public partial class SolitaireGameUI : Control
             foundationUI.OnFoundationUpdated += OnFoundationUpdated;
         }
 
-        deck.SetCards(tableau.deck);
+        drawPileUI.InitialiseWithStack(tableau.drawPile);
     }
 
     public void OnFoundationUpdated()

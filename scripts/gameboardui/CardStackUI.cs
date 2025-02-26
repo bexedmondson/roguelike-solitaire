@@ -14,22 +14,20 @@ public partial class CardStackUI : TextureRect
 
     public virtual bool CanDrag => true;
 
-    protected System.Collections.Generic.List<Card> cards = new();
+    protected Stack stack;
 
     private List<CardUI> cardTextureRects = new();
 
-    public void SetCards(List<Card> cards)
+    public void InitialiseWithStack(Stack stack)
     {
-        this.cards = cards;
+        this.stack = stack;
         UpdateCardVisuals();
+        this.stack.OnStackUpdated += UpdateCardVisuals;
     }
 
-    public virtual CardDrag GetDragData(CardUI selectedCard)
+    public virtual CardDrag GetDragData(CardUI selectedCardUI)
     {
-        //GD.Print($"selectedcard {selectedCard.card.suit}{selectedCard.card.level}");
-        //GD.Print($"index {cards.IndexOf(selectedCard.card)}, lastindex {cards.Count - 1}");
-        int selectedCardIndex = cards.IndexOf(selectedCard.card);
-        var dragCards = cards.GetRange(0, selectedCardIndex+1);//, cards.Count - selectedCardIndex);
+        var dragCards = stack.GetStackSectionFromSelectedCard(selectedCardUI.card);
 
         //GD.Print($"drag count {dragCards.Count} {dragCards[0].suit}{dragCards[0].level}");
         //if (dragCards.Count > 1)
@@ -50,7 +48,10 @@ public partial class CardStackUI : TextureRect
             }
         }
 
-        return new CardDrag(){sourceStack = this, cards = new Godot.Collections.Array<Card>(dragCards)};
+        var cardDrag = new CardDrag();
+        cardDrag.InitialiseCardDrag(stack, dragCards);
+
+        return cardDrag;
     }
 
     public override void _Notification(int notification)
@@ -72,52 +73,16 @@ public partial class CardStackUI : TextureRect
 
         var dropData = (CardDrag)data.AsGodotObject();
 
-        if (cards.Count == 0)
-        {
-            return dropData.cards[^1].level == 13;
-        }
-
-        Card currentEndCard = cards[0];
-        GD.Print($"current stack end card {currentEndCard.suit} {currentEndCard.level}");
-        
-        var card = dropData.cards[^1];
-        GD.Print($"current drop card {card.suit} {card.level}");
-        if (!card.suit.CanStackOnSuit(currentEndCard.suit))
-            return false;
-        
-        return card.level == currentEndCard.level - 1;
+        return stack.CanDropCards(dropData.cards);
     }
 
     public override void _DropData(Vector2 atPosition, Variant data) 
     {
         var dropData = (CardDrag)data.AsGodotObject();
 
-        for (int i = dropData.cards.Count - 1; i >= 0; i--)
-        {
-            Card newCard = dropData.cards[i];
-            cards.Insert(0, newCard); //TODO worth doing extra checks? or are the checks in CanDropData enough. hmm
-        }
+        stack.AddCards(dropData.cards);
 
-        dropData.OnDrop(this);
-
-        UpdateCardVisuals();
-    }
-
-    public void RemoveCards(Godot.Collections.Array<Card> cardsToRemove)
-    {
-        //GD.Print($"removing cards from stack: {cardsToRemove.Count}, stack count {cards.Count}");
-        for (int i = 0; i < cardsToRemove.Count; i++)
-        {
-            Card card = cardsToRemove[i];
-            if (cards[0] != card)
-            {
-                GD.PushError("trying to pop card from stack that isn't at the end?? stopping here");
-                break;
-            }
-            cards.Remove(card);
-        }
-
-        UpdateCardVisuals();
+        dropData.DoCardDrop(stack);
     }
 
     protected void UpdateCardVisuals()
@@ -128,12 +93,10 @@ public partial class CardStackUI : TextureRect
         }
         cardTextureRects.Clear();
 
-        if (cards.Count == 0)
+        if (stack.IsEmpty)
             return;
 
-        UpdateCardFlipStatus();
-
-        foreach (Card card in cards)
+        foreach (Card card in stack.cards)
         {
             //GD.Print($"making card {card.suit.Name()} {card.level}");
             var cardControl = cardTextureRectScene.Instantiate<CardUI>();
@@ -151,11 +114,5 @@ public partial class CardStackUI : TextureRect
             cardContainer.MoveChild(cardControl, 0);
             cardTextureRects.Add(cardControl);
         }
-    }
-
-    protected virtual void UpdateCardFlipStatus()
-    {
-        if (!cards[0].flipped)
-            cards[0].flipped = true;
     }
 }

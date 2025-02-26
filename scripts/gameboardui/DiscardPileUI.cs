@@ -9,16 +9,16 @@ public partial class DiscardPileUI : CardStackUI
 
     public void AddCard(Card card)
     {
-        cards.Insert(0, card);
+        stack.cards.Insert(0, card);
 
         UpdateCardVisuals();
     }
 
     public Card[] GetDiscardPileAndClear()
     {
-        var temp = cards.ToArray();
-        
-        cards.Clear();
+        var temp = stack.cards.ToArray();
+        //TODO: update this to do the logic not in the ui class
+        stack.cards.Clear();
         UpdateCardVisuals();
 
         return temp;
