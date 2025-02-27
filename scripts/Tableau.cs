@@ -7,21 +7,32 @@ public class Tableau : IInjectable
     private int stackCount = 7;
     public List<Stack> stacks;
 
+    public List<Foundation> foundations;
+
     public DrawPile drawPile;
     public DiscardPile discardPile;
 
     public Tableau()
     {
         stacks = new List<Stack>();
+        foundations = new List<Foundation>();
         drawPile = new DrawPile();
         discardPile = new DiscardPile();
 
+        var suits = Enum.GetValues(typeof(Suit));
+
         for (int i = 1; i <= 13; i++)
         {
-            drawPile.Add(new Card(){suit = Suit.Diamond, level = i});
-            drawPile.Add(new Card(){suit = Suit.Heart, level = i});
-            drawPile.Add(new Card(){suit = Suit.Club, level = i});
-            drawPile.Add(new Card(){suit = Suit.Spade, level = i});
+            foreach (var suit in suits)
+            {
+                drawPile.Add(new Card(){suit = (Suit)suit, level = i});
+                //GD.Print($"Added card {card.suit.Name()} {card.level}");
+            }
+        }
+
+        foreach (Suit suit in Enum.GetValues(typeof(Suit)))
+        {
+            foundations.Add(new Foundation(suit));
         }
 
         InjectionManager.Register<Tableau>(this);
@@ -50,5 +61,20 @@ public class Tableau : IInjectable
     {
         var cardsToFlip = discardPile.GetCardsAndClear();
         drawPile.AddCards(cardsToFlip);
+    }
+
+    public bool IsComplete()
+    {
+        if (!drawPile.IsEmpty)
+            return false;
+        if (!discardPile.IsEmpty)
+            return false;
+        foreach (Stack stack in stacks)
+        {
+            if (!stack.IsEmpty)
+                return false;
+        }
+
+        return true;
     }
 }

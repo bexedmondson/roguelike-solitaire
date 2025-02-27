@@ -67,7 +67,6 @@ public partial class CardStackUI : TextureRect
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
-        GD.Print(data);
         if (data.VariantType != Variant.Type.Object)
             return false;
 

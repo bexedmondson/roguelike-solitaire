@@ -46,11 +46,14 @@ public class Stack
 
     protected virtual void UpdateCardFlipStatus()
     {
+        if (IsEmpty)
+            return;
+
         if (!cards[0].flipped)
             cards[0].flipped = true;
     }
 
-    public bool CanDropCards(Godot.Collections.Array<Card> dropCards)
+    public virtual bool CanDropCards(Godot.Collections.Array<Card> dropCards)
     {
         if (dropCards.Count == 0)
         {
@@ -61,8 +64,8 @@ public class Stack
         if (IsEmpty)
             return dropCards[^1].level == 13;
         
-        Card currentEndCard = cards[0]; GD.Print($"current stack end card {currentEndCard.suit} {currentEndCard.level}");
-        var topDropCard = dropCards[^1]; GD.Print($"current drop card {topDropCard.suit} {topDropCard.level}");
+        Card currentEndCard = cards[0]; //GD.Print($"current stack end card {currentEndCard.suit} {currentEndCard.level}");
+        var topDropCard = dropCards[^1]; //GD.Print($"current drop card {topDropCard.suit} {topDropCard.level}");
         
         return topDropCard.suit.CanStackOnSuit(currentEndCard.suit) && topDropCard.level == currentEndCard.level - 1;
     }

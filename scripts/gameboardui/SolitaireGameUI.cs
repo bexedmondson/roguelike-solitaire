@@ -27,9 +27,11 @@ public partial class SolitaireGameUI : Control
             stackUIs[i].InitialiseWithStack(stack);
         }
 
-        foreach (FoundationUI foundationUI in foundationUIs)
+        for (int i = 0; i < foundationUIs.Count; i++)
         {
-            foundationUI.OnFoundationUpdated += OnFoundationUpdated;
+            Foundation foundation = tableau.foundations[i];
+            foundationUIs[i].InitialiseWithStack(foundation);
+            foundation.OnStackUpdated += OnFoundationUpdated;
         }
 
         drawPileUI.InitialiseWithStack(tableau.drawPile);
@@ -39,13 +41,8 @@ public partial class SolitaireGameUI : Control
 
     public void OnFoundationUpdated()
     {
-        GD.Print("on foundation updated");
-        foreach (FoundationUI foundationUI in foundationUIs)
-        {
-            if (!foundationUI.IsReady())
-                return;
-        }
-        
-        GD.Print("yay you did it");
+        //GD.Print("on foundation updated");
+        if (tableau.IsComplete())
+            GD.Print("yay you did it");
     }
 }

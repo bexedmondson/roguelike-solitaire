@@ -125,17 +125,14 @@ layout_mode = 2
 [node name="Foundation2" parent="CardPiles/Foundations" instance=ExtResource("1_jtt5i")]
 layout_mode = 2
 texture = ExtResource("2_gudf5")
-suit = 1
 
 [node name="Foundation3" parent="CardPiles/Foundations" instance=ExtResource("1_jtt5i")]
 layout_mode = 2
 texture = ExtResource("3_e17pb")
-suit = 2
 
 [node name="Foundation4" parent="CardPiles/Foundations" instance=ExtResource("1_jtt5i")]
 layout_mode = 2
 texture = ExtResource("4_otdc4")
-suit = 3
 
 [node name="Tableau" type="Control" parent="."]
 layout_mode = 1
