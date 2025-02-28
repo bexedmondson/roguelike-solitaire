@@ -106,6 +106,6 @@ public class Tableau : IInjectable
         foreach (Card card in discardPile.cards)
             GD.Print($"\t{card.suit}{card.level}");
         
-        GD.Print("\n--- TABLEAU LOG END ---");
+        GD.Print("\n--- TABLEAU LOG END ---\n");
     }
 }
