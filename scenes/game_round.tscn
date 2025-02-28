@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dackwo5gts6w3"]
+[gd_scene load_steps=12 format=3 uid="uid://dackwo5gts6w3"]
 
 [ext_resource type="Script" uid="uid://cy6cxfoecx1m5" path="res://scripts/gameboardui/SolitaireGameUI.cs" id="1_e17pb"]
 [ext_resource type="PackedScene" uid="uid://devch01ty8fnq" path="res://scenes/foundation.tscn" id="1_jtt5i"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c55jrxnfjf25p" path="res://textures/stack_backgrounds/foundation_spade.tres" id="4_otdc4"]
 [ext_resource type="PackedScene" uid="uid://bk4rlnahlcxa3" path="res://scenes/card_texture_rect.tscn" id="5_6ebo5"]
 [ext_resource type="Script" uid="uid://bujpvimoqxdqp" path="res://scripts/gameboardui/DiscardPileUI.cs" id="6_6ebo5"]
+[ext_resource type="Script" uid="uid://ddxyfnmdknoar" path="res://scripts/debug/DebugButton.cs" id="11_6ebo5"]
 
 [node name="GameRound" type="Control" node_paths=PackedStringArray("stackUIs", "foundationUIs", "drawPileUI", "discardPileUI")]
 layout_mode = 3
@@ -175,4 +176,13 @@ layout_mode = 2
 [node name="Stack7" parent="Tableau/Stacks" instance=ExtResource("2_4tnd8")]
 layout_mode = 2
 
+[node name="DebugButton" type="Button" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+flat = true
+script = ExtResource("11_6ebo5")
+
 [connection signal="button_up" from="CardPiles/Draw/DrawPile/Button" to="CardPiles/Draw/DrawPile" method="OnClick"]
+[connection signal="pressed" from="DebugButton" to="DebugButton" method="OnClick"]

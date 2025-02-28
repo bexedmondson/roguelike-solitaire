@@ -77,4 +77,35 @@ public class Tableau : IInjectable
 
         return true;
     }
+
+    public void LogTableau()
+    {
+        GD.Print("\n--- TABLEAU LOG ---\n");
+        GD.Print("STACKS");
+
+        for (int i = 0; i < stacks.Count; i++)
+        {
+            GD.Print($"Stack {i}");
+            foreach (Card card in stacks[i].cards)
+                GD.Print($"\t{card.suit}{card.level}");
+        }
+
+        GD.Print("\nFOUNDATIONS");
+        for (int i = 0; i < foundations.Count; i++)
+        {
+            GD.Print($"Foundation {i}");
+            foreach (Card card in foundations[i].cards)
+                GD.Print($"\t{card.suit}{card.level}");
+        }
+
+        GD.Print($"\nDRAW PILE");
+        foreach (Card card in drawPile.cards)
+            GD.Print($"\t{card.suit}{card.level}");
+
+        GD.Print($"\nDISCARD PILE");
+        foreach (Card card in discardPile.cards)
+            GD.Print($"\t{card.suit}{card.level}");
+        
+        GD.Print("\n--- TABLEAU LOG END ---");
+    }
 }
