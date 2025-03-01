@@ -24,6 +24,10 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="roguelike-solitaire"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg", "res://addons/label_font_auto_sizer/plugin.cfg")
+
 [rendering]
 
 renderer/rendering_method="mobile"

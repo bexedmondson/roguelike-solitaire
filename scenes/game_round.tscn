@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dackwo5gts6w3"]
+[gd_scene load_steps=13 format=3 uid="uid://dackwo5gts6w3"]
 
 [ext_resource type="Script" uid="uid://cy6cxfoecx1m5" path="res://scripts/gameboardui/SolitaireGameUI.cs" id="1_e17pb"]
 [ext_resource type="PackedScene" uid="uid://devch01ty8fnq" path="res://scenes/foundation.tscn" id="1_jtt5i"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bkxylkh51t5le" path="res://textures/stack_backgrounds/foundation_club.tres" id="3_e17pb"]
 [ext_resource type="Texture2D" uid="uid://c55jrxnfjf25p" path="res://textures/stack_backgrounds/foundation_spade.tres" id="4_otdc4"]
 [ext_resource type="PackedScene" uid="uid://bk4rlnahlcxa3" path="res://scenes/card_texture_rect.tscn" id="5_6ebo5"]
+[ext_resource type="Script" uid="uid://dep3qrmufmisf" path="res://addons/label_font_auto_sizer/label_auto_sizer.gd" id="5_8f8x2"]
 [ext_resource type="Script" uid="uid://bujpvimoqxdqp" path="res://scripts/gameboardui/DiscardPileUI.cs" id="6_6ebo5"]
 [ext_resource type="Script" uid="uid://ddxyfnmdknoar" path="res://scripts/debug/DebugButton.cs" id="11_6ebo5"]
 
@@ -37,7 +38,7 @@ anchor_right = 0.15
 anchor_bottom = 1.0
 grow_vertical = 2
 
-[node name="DrawPile" type="TextureRect" parent="CardPiles/Draw" node_paths=PackedStringArray("cardContainer")]
+[node name="DrawPile" type="TextureRect" parent="CardPiles/Draw" node_paths=PackedStringArray("cardContainer", "debugLabel")]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -57,6 +58,7 @@ script = ExtResource("3_88ydg")
 emptyTexture = ExtResource("2_88ydg")
 cardContainer = NodePath("CardStackContainer")
 cardTextureRectScene = ExtResource("5_6ebo5")
+debugLabel = NodePath("DebugAutoSizeLabel")
 
 [node name="Button" type="Button" parent="CardPiles/Draw/DrawPile"]
 layout_mode = 1
@@ -73,6 +75,31 @@ anchor_right = 1.0
 grow_horizontal = 2
 theme_override_constants/separation = 0
 
+[node name="DebugAutoSizeLabel" type="Label" parent="CardPiles/Draw/DrawPile"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.8
+anchor_right = 1.1
+anchor_bottom = 1.15
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+script = ExtResource("5_8f8x2")
+_max_size = 20
+_current_font_size = 20
+_editor_defaults_set = true
+metadata/_custom_type_script = ExtResource("5_8f8x2")
+
 [node name="Discard" type="Control" parent="CardPiles"]
 layout_mode = 1
 anchor_left = 0.15
@@ -82,7 +109,7 @@ offset_top = 1.0
 offset_bottom = 1.0
 grow_vertical = 2
 
-[node name="DiscardPile" type="TextureRect" parent="CardPiles/Discard" node_paths=PackedStringArray("cardContainer")]
+[node name="DiscardPile" type="TextureRect" parent="CardPiles/Discard" node_paths=PackedStringArray("cardContainer", "debugLabel")]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -101,12 +128,38 @@ script = ExtResource("6_6ebo5")
 emptyTexture = ExtResource("2_88ydg")
 cardContainer = NodePath("CardStackContainer")
 cardTextureRectScene = ExtResource("5_6ebo5")
+debugLabel = NodePath("DebugAutoSizeLabel")
 
 [node name="CardStackContainer" type="VBoxContainer" parent="CardPiles/Discard/DiscardPile"]
 layout_mode = 0
 anchor_right = 1.0
 grow_horizontal = 2
 theme_override_constants/separation = 0
+
+[node name="DebugAutoSizeLabel" type="Label" parent="CardPiles/Discard/DiscardPile"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.8
+anchor_right = 1.1
+anchor_bottom = 1.15
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+script = ExtResource("5_8f8x2")
+_max_size = 20
+_current_font_size = 20
+_editor_defaults_set = true
+metadata/_custom_type_script = ExtResource("5_8f8x2")
 
 [node name="Foundations" type="GridContainer" parent="CardPiles"]
 layout_mode = 1

@@ -12,11 +12,31 @@ public partial class CardStackUI : TextureRect
     [Export]
     private PackedScene cardTextureRectScene;
 
+    [Export]
+    private Label debugLabel;
+
     public virtual bool CanDrag => true;
 
     protected Stack stack;
 
     private List<CardUI> cardTextureRects = new();
+
+    public override void _EnterTree()
+    {
+        OnDebugToggled();
+        GameDebug.OnGameDebugToggled += OnDebugToggled;
+    }
+
+    public override void _ExitTree()
+    {
+        GameDebug.OnGameDebugToggled -= OnDebugToggled;
+    }
+
+    private void OnDebugToggled()
+    {
+        if (debugLabel != null)
+            debugLabel.Visible = GameDebug.On;
+    }
 
     public void InitialiseWithStack(Stack stack)
     {
@@ -83,6 +103,9 @@ public partial class CardStackUI : TextureRect
 
     protected void UpdateCardVisuals()
     {
+        if (debugLabel != null)
+            debugLabel.Text = stack != null ? stack.Count.ToString() : "0";
+
         foreach (CardUI cardTextureRect in cardTextureRects)
         {
             cardTextureRect.QueueFree();
@@ -94,7 +117,7 @@ public partial class CardStackUI : TextureRect
 
         foreach (Card card in stack.cards)
         {
-            //GD.Print($"making card {card.suit.Name()} {card.level}");
+            //GD.Print($"making card {card.Name}");
             var cardControl = cardTextureRectScene.Instantiate<CardUI>();
             cardControl.card = card;
             cardControl.SetStack(this);

@@ -1,5 +1,4 @@
 
-using System.ComponentModel.DataAnnotations;
 using Godot;
 
 public partial class DebugButton : Button
@@ -30,12 +29,14 @@ public partial class DebugButton : Button
         {
             timeSinceFirstClick = 0;
             clickCount = 0;
-            ShowDebug();
+            ToggleDebug();
         }
     }
 
-    private void ShowDebug()
+    private void ToggleDebug()
     {
+        GameDebug.On = !GameDebug.On;
+
         var tableau = InjectionManager.Get<Tableau>();
         tableau.LogTableau();
     }

@@ -9,13 +9,42 @@ public partial class CardUI : Control
     [Export]
     public PackedScene stackContainerScene;
 
-    public Card card;
+    [Export]
+    private Label debugLabel;
+
+    //TODO change to autoproperty if/when godot moves to c#>13, .net>10
+    private Card m_card;
+    public Card card {
+        get => m_card;
+        set {
+            m_card = value;
+            if (debugLabel != null)
+                debugLabel.Text = m_card.Name;
+        }
+    }
 
     private CardStackUI cardStackUI;
 
     public void SetStack(CardStackUI cardStackUI)
     {
         this.cardStackUI = cardStackUI;
+    }
+
+    public override void _EnterTree()
+    {
+        OnDebugToggled();
+        GameDebug.OnGameDebugToggled += OnDebugToggled;
+    }
+
+    public override void _ExitTree()
+    {
+        GameDebug.OnGameDebugToggled -= OnDebugToggled;
+    }
+
+    private void OnDebugToggled()
+    {
+        if (debugLabel != null)
+            debugLabel.Visible = GameDebug.On;
     }
 
     private bool mouseOn = false;

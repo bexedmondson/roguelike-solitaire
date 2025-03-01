@@ -20,7 +20,7 @@ public partial class DrawPileUI : CardStackUI
 
         foreach (Card card in stack.cards)
         {
-            GD.Print($"  {card.suit.Name()}{card.level}");
+            GD.Print($"  {card.Name}");
         }*/
 
         tableau.MoveCards(stack, tableau.discardPile, new Godot.Collections.Array<Card>(){stack.cards[^1]});
@@ -29,7 +29,7 @@ public partial class DrawPileUI : CardStackUI
 
         foreach (Card card in stack.cards)
         {
-            GD.Print($"  {card.suit.Name()}{card.level}");
+            GD.Print($"  {card.Name}");
         }*/
     }
 }

@@ -9,7 +9,7 @@ public class Stack
 
     public event Action OnStackUpdated;
 
-    public int Count => m_cards.Count;
+    public int Count => m_cards != null ? m_cards.Count : 0;
 
     public bool IsEmpty => Count == 0;
 

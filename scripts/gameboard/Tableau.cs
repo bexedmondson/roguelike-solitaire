@@ -26,7 +26,7 @@ public class Tableau : IInjectable
             foreach (var suit in suits)
             {
                 drawPile.Add(new Card(){suit = (Suit)suit, level = i});
-                //GD.Print($"Added card {card.suit.Name()} {card.level}");
+                //GD.Print($"Added card {card.Name}");
             }
         }
 
