@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp7qoqfsu8ksl"]
+
+[ext_resource type="PackedScene" uid="uid://cli0w8kvrvruv" path="res://scenes/card_faces/card_face_template.tscn" id="1_ihaxg"]
+
+[node name="CardFaceTemplate" instance=ExtResource("1_ihaxg")]
+
+[node name="CentreLarge" parent="." index="1"]
+visible = true
+
+[node name="CentreSmall" parent="." index="2"]
+visible = false

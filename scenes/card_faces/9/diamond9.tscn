@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4u75f23k58lw"]
+
+[ext_resource type="PackedScene" uid="uid://cli0w8kvrvruv" path="res://scenes/card_faces/card_face_template.tscn" id="1_70voj"]
+[ext_resource type="Texture2D" uid="uid://d3blqhffh2rmh" path="res://textures/card_components/card_component_9_corner.tres" id="2_l87b0"]
+
+[node name="CardFaceTemplate" instance=ExtResource("1_70voj")]
+
+[node name="TextureRect_Centre3" parent="CentreSmall" index="0"]
+visible = false
+
+[node name="TextureRect_Centre" parent="CentreSmall" index="2"]
+visible = false
+
+[node name="TextureRect_Centre4" parent="CentreSmall" index="3"]
+visible = false
+
+[node name="TextureRect_Left3" parent="CentreSmall" index="5"]
+visible = false
+
+[node name="TextureRect_Left" parent="CentreSmall" index="7"]
+visible = false
+
+[node name="TextureRect_Left4" parent="CentreSmall" index="9"]
+visible = false
+
+[node name="TextureRect_Right3" parent="CentreSmall" index="12"]
+visible = false
+
+[node name="TextureRect_Right" parent="CentreSmall" index="14"]
+visible = false
+
+[node name="TextureRect_Right5" parent="CentreSmall" index="16"]
+visible = false
+
+[node name="TextureRect" parent="CornerText" index="0"]
+texture = ExtResource("2_l87b0")
+
+[node name="TextureRect2" parent="CornerText" index="1"]
+texture = ExtResource("2_l87b0")

@@ -1,34 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://cli0w8kvrvruv"]
+[gd_scene load_steps=6 format=3 uid="uid://cli0w8kvrvruv"]
 
 [ext_resource type="Texture2D" uid="uid://tgwec5phvpf0" path="res://textures/card_components/card_component_bg.tres" id="1_n7n74"]
-[ext_resource type="Texture2D" uid="uid://c45pc7a532b0b" path="res://textures/card_components/card_component_club_centre_large.tres" id="2_72otn"]
 [ext_resource type="Texture2D" uid="uid://cl2a4u2dgwowx" path="res://textures/card_components/card_component_diamond_centre_large.tres" id="3_s6dod"]
-[ext_resource type="Texture2D" uid="uid://cyukg8qkhtq3j" path="res://textures/card_components/card_component_heart_centre_large.tres" id="4_t21x0"]
-[ext_resource type="Texture2D" uid="uid://dsvavr6q818qq" path="res://textures/card_components/card_component_spade_centre_large.tres" id="5_jjy3p"]
-[ext_resource type="Texture2D" uid="uid://cn4lnfage40et" path="res://textures/card_components/card_component_j_centre.tres" id="6_3cxk5"]
-[ext_resource type="Texture2D" uid="uid://c616elo2ia8wx" path="res://textures/card_components/card_component_q_centre.tres" id="7_vvunx"]
-[ext_resource type="Texture2D" uid="uid://3ll32pcmx336" path="res://textures/card_components/card_component_k_centre.tres" id="8_72otn"]
 [ext_resource type="Texture2D" uid="uid://c7tgl7j6s5gjl" path="res://textures/card_components/card_component_diamond_centre_small.tres" id="9_s6dod"]
-[ext_resource type="Texture2D" uid="uid://ctid8uuct0jn4" path="res://textures/card_components/card_component_heart_centre_small.tres" id="10_3cxk5"]
-[ext_resource type="Texture2D" uid="uid://dp1qq2fpqm30y" path="res://textures/card_components/card_component_club_centre_small.tres" id="11_vvunx"]
-[ext_resource type="Texture2D" uid="uid://n40ya4f7qfcp" path="res://textures/card_components/card_component_spade_centre_small.tres" id="12_8xfj4"]
 [ext_resource type="Texture2D" uid="uid://u5hxipqvm2d" path="res://textures/card_components/card_component_diamond_icon.tres" id="13_vvunx"]
-[ext_resource type="Texture2D" uid="uid://o7x3ywhfs8ln" path="res://textures/card_components/card_component_heart_icon.tres" id="14_5sgyx"]
-[ext_resource type="Texture2D" uid="uid://cqq7nndwg5euo" path="res://textures/card_components/card_component_club_icon.tres" id="15_jhufb"]
-[ext_resource type="Texture2D" uid="uid://canyt58m8e6l7" path="res://textures/card_components/card_component_spade_icon.tres" id="16_rvae4"]
 [ext_resource type="Texture2D" uid="uid://buwym0agkafi0" path="res://textures/card_components/card_component_a_corner.tres" id="17_0hsvp"]
-[ext_resource type="Texture2D" uid="uid://c55rw12v8u1u3" path="res://textures/card_components/card_component_2_corner.tres" id="18_gp10u"]
-[ext_resource type="Texture2D" uid="uid://cb3q8lkvtiuvb" path="res://textures/card_components/card_component_3_corner.tres" id="19_m7p7p"]
-[ext_resource type="Texture2D" uid="uid://bna8lpbn6xdkp" path="res://textures/card_components/card_component_4_corner.tres" id="20_ea5iy"]
-[ext_resource type="Texture2D" uid="uid://yopaeef43qvh" path="res://textures/card_components/card_component_5_corner.tres" id="21_15mja"]
-[ext_resource type="Texture2D" uid="uid://0y1xqayskihv" path="res://textures/card_components/card_component_6_corner.tres" id="22_d34uj"]
-[ext_resource type="Texture2D" uid="uid://blm333vf6ob22" path="res://textures/card_components/card_component_7_corner.tres" id="23_2mpog"]
-[ext_resource type="Texture2D" uid="uid://dlhk1hoyc3cou" path="res://textures/card_components/card_component_8_corner.tres" id="24_cxw6p"]
-[ext_resource type="Texture2D" uid="uid://d3blqhffh2rmh" path="res://textures/card_components/card_component_9_corner.tres" id="25_dt21r"]
-[ext_resource type="Texture2D" uid="uid://dv0xyxlyn2ocd" path="res://textures/card_components/card_component_10_corner.tres" id="26_gyvrh"]
-[ext_resource type="Texture2D" uid="uid://cf28xuvcy2bra" path="res://textures/card_components/card_component_j_corner.tres" id="27_alobj"]
-[ext_resource type="Texture2D" uid="uid://bcb10uyq6njbd" path="res://textures/card_components/card_component_q_corner.tres" id="28_da4a6"]
-[ext_resource type="Texture2D" uid="uid://drsy30x78edvl" path="res://textures/card_components/card_component_k_corner.tres" id="29_r3djm"]
 
 [node name="CardFaceTemplate" type="AspectRatioContainer"]
 anchors_preset = 15
@@ -48,15 +24,7 @@ size_flags_vertical = 0
 texture = ExtResource("1_n7n74")
 stretch_mode = 4
 
-[node name="CentreClub" type="TextureRect" parent="."]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_72otn")
-stretch_mode = 4
-
-[node name="CentreDiamond" type="TextureRect" parent="."]
+[node name="CentreLarge" type="TextureRect" parent="."]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -64,78 +32,11 @@ size_flags_vertical = 4
 texture = ExtResource("3_s6dod")
 stretch_mode = 4
 
-[node name="CentreHeart" type="TextureRect" parent="."]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("4_t21x0")
-stretch_mode = 4
-
-[node name="CentreSpade" type="TextureRect" parent="."]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("5_jjy3p")
-stretch_mode = 4
-
-[node name="CentreJ" type="TextureRect" parent="."]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("6_3cxk5")
-stretch_mode = 4
-
-[node name="CentreQ" type="TextureRect" parent="."]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("7_vvunx")
-stretch_mode = 4
-
-[node name="CentreK" type="TextureRect" parent="."]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("8_72otn")
-stretch_mode = 4
-
 [node name="CentreSmall" type="Control" parent="."]
 custom_minimum_size = Vector2(49, 63)
 layout_mode = 2
 
-[node name="Diamonds" type="Control" parent="CentreSmall"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 28.0
-offset_right = 28.0
-offset_bottom = 35.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 21.0
-offset_right = 28.0
-offset_bottom = 28.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="CentreSmall/Diamonds"]
+[node name="TextureRect_Centre3" type="TextureRect" parent="CentreSmall"]
 layout_mode = 0
 offset_left = 21.0
 offset_top = 14.0
@@ -144,7 +45,25 @@ offset_bottom = 21.0
 texture = ExtResource("9_s6dod")
 stretch_mode = 2
 
-[node name="TextureRect4" type="TextureRect" parent="CentreSmall/Diamonds"]
+[node name="TextureRect_Centre2" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 28.0
+offset_bottom = 28.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Centre" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 28.0
+offset_right = 28.0
+offset_bottom = 35.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Centre4" type="TextureRect" parent="CentreSmall"]
 layout_mode = 0
 offset_left = 21.0
 offset_top = 42.0
@@ -153,79 +72,7 @@ offset_bottom = 49.0
 texture = ExtResource("9_s6dod")
 stretch_mode = 2
 
-[node name="TextureRect5" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 28.0
-offset_right = 17.0
-offset_bottom = 35.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect6" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 21.0
-offset_right = 17.0
-offset_bottom = 28.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect7" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 14.0
-offset_right = 17.0
-offset_bottom = 21.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect8" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 42.0
-offset_right = 17.0
-offset_bottom = 49.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect9" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 28.0
-offset_right = 39.0
-offset_bottom = 35.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect10" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 21.0
-offset_right = 39.0
-offset_bottom = 28.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect11" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 14.0
-offset_right = 39.0
-offset_bottom = 21.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect13" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 7.0
-offset_right = 39.0
-offset_bottom = 14.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect15" type="TextureRect" parent="CentreSmall/Diamonds"]
+[node name="TextureRect_Left5" type="TextureRect" parent="CentreSmall"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 7.0
@@ -234,7 +81,106 @@ offset_bottom = 14.0
 texture = ExtResource("9_s6dod")
 stretch_mode = 2
 
-[node name="TextureRect12" type="TextureRect" parent="CentreSmall/Diamonds"]
+[node name="TextureRect_Left3" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 14.0
+offset_right = 17.0
+offset_bottom = 21.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Left2" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 21.0
+offset_right = 17.0
+offset_bottom = 28.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Left" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 28.0
+offset_right = 17.0
+offset_bottom = 35.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Left6" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 35.0
+offset_right = 17.0
+offset_bottom = 42.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Left4" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 42.0
+offset_right = 17.0
+offset_bottom = 49.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Left7" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 49.0
+offset_right = 17.0
+offset_bottom = 56.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Right4" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 7.0
+offset_right = 39.0
+offset_bottom = 14.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Right3" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 14.0
+offset_right = 39.0
+offset_bottom = 21.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Right2" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 21.0
+offset_right = 39.0
+offset_bottom = 28.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Right" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 28.0
+offset_right = 39.0
+offset_bottom = 35.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Right6" type="TextureRect" parent="CentreSmall"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 35.0
+offset_right = 39.0
+offset_bottom = 42.0
+texture = ExtResource("9_s6dod")
+stretch_mode = 2
+
+[node name="TextureRect_Right5" type="TextureRect" parent="CentreSmall"]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 42.0
@@ -243,569 +189,20 @@ offset_bottom = 49.0
 texture = ExtResource("9_s6dod")
 stretch_mode = 2
 
-[node name="TextureRect16" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 35.0
-offset_right = 39.0
-offset_bottom = 42.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect18" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 35.0
-offset_right = 17.0
-offset_bottom = 42.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect19" type="TextureRect" parent="CentreSmall/Diamonds"]
+[node name="TextureRect_Right7" type="TextureRect" parent="CentreSmall"]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 49.0
 offset_right = 39.0
 offset_bottom = 56.0
 texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="TextureRect21" type="TextureRect" parent="CentreSmall/Diamonds"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 49.0
-offset_right = 17.0
-offset_bottom = 56.0
-texture = ExtResource("9_s6dod")
-stretch_mode = 2
-
-[node name="Hearts" type="Control" parent="CentreSmall"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 28.0
-offset_right = 28.0
-offset_bottom = 35.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 21.0
-offset_right = 28.0
-offset_bottom = 28.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 14.0
-offset_right = 28.0
-offset_bottom = 21.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect4" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 42.0
-offset_right = 28.0
-offset_bottom = 49.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect5" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 28.0
-offset_right = 17.0
-offset_bottom = 35.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect6" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 21.0
-offset_right = 17.0
-offset_bottom = 28.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect7" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 14.0
-offset_right = 17.0
-offset_bottom = 21.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect8" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 42.0
-offset_right = 17.0
-offset_bottom = 49.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect9" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 28.0
-offset_right = 39.0
-offset_bottom = 35.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect10" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 21.0
-offset_right = 39.0
-offset_bottom = 28.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect11" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 14.0
-offset_right = 39.0
-offset_bottom = 21.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect13" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 7.0
-offset_right = 39.0
-offset_bottom = 14.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect15" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 7.0
-offset_right = 17.0
-offset_bottom = 14.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect12" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 42.0
-offset_right = 39.0
-offset_bottom = 49.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect16" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 35.0
-offset_right = 39.0
-offset_bottom = 42.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect18" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 35.0
-offset_right = 17.0
-offset_bottom = 42.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect19" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 49.0
-offset_right = 39.0
-offset_bottom = 56.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="TextureRect21" type="TextureRect" parent="CentreSmall/Hearts"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 49.0
-offset_right = 17.0
-offset_bottom = 56.0
-texture = ExtResource("10_3cxk5")
-stretch_mode = 2
-
-[node name="Clubs" type="Control" parent="CentreSmall"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 28.0
-offset_right = 28.0
-offset_bottom = 35.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 21.0
-offset_right = 28.0
-offset_bottom = 28.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 14.0
-offset_right = 28.0
-offset_bottom = 21.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect4" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 42.0
-offset_right = 28.0
-offset_bottom = 49.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect5" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 28.0
-offset_right = 17.0
-offset_bottom = 35.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect6" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 21.0
-offset_right = 17.0
-offset_bottom = 28.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect7" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 14.0
-offset_right = 17.0
-offset_bottom = 21.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect8" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 42.0
-offset_right = 17.0
-offset_bottom = 49.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect9" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 28.0
-offset_right = 39.0
-offset_bottom = 35.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect10" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 21.0
-offset_right = 39.0
-offset_bottom = 28.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect11" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 14.0
-offset_right = 39.0
-offset_bottom = 21.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect13" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 7.0
-offset_right = 39.0
-offset_bottom = 14.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect15" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 7.0
-offset_right = 17.0
-offset_bottom = 14.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect12" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 42.0
-offset_right = 39.0
-offset_bottom = 49.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect16" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 35.0
-offset_right = 39.0
-offset_bottom = 42.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect18" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 35.0
-offset_right = 17.0
-offset_bottom = 42.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect19" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 49.0
-offset_right = 39.0
-offset_bottom = 56.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="TextureRect21" type="TextureRect" parent="CentreSmall/Clubs"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 49.0
-offset_right = 17.0
-offset_bottom = 56.0
-texture = ExtResource("11_vvunx")
-stretch_mode = 2
-
-[node name="Spades" type="Control" parent="CentreSmall"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 28.0
-offset_right = 28.0
-offset_bottom = 35.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 21.0
-offset_right = 28.0
-offset_bottom = 28.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 14.0
-offset_right = 28.0
-offset_bottom = 21.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect4" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 42.0
-offset_right = 28.0
-offset_bottom = 49.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect5" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 28.0
-offset_right = 17.0
-offset_bottom = 35.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect6" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 21.0
-offset_right = 17.0
-offset_bottom = 28.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect7" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 14.0
-offset_right = 17.0
-offset_bottom = 21.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect8" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 42.0
-offset_right = 17.0
-offset_bottom = 49.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect9" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 28.0
-offset_right = 39.0
-offset_bottom = 35.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect10" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 21.0
-offset_right = 39.0
-offset_bottom = 28.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect11" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 14.0
-offset_right = 39.0
-offset_bottom = 21.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect13" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 7.0
-offset_right = 39.0
-offset_bottom = 14.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect15" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 7.0
-offset_right = 17.0
-offset_bottom = 14.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect12" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 42.0
-offset_right = 39.0
-offset_bottom = 49.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect16" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 35.0
-offset_right = 39.0
-offset_bottom = 42.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect18" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 35.0
-offset_right = 17.0
-offset_bottom = 42.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect19" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 49.0
-offset_right = 39.0
-offset_bottom = 56.0
-texture = ExtResource("12_8xfj4")
-stretch_mode = 2
-
-[node name="TextureRect21" type="TextureRect" parent="CentreSmall/Spades"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 49.0
-offset_right = 17.0
-offset_bottom = 56.0
-texture = ExtResource("12_8xfj4")
 stretch_mode = 2
 
 [node name="CornerIcons" type="Control" parent="."]
 custom_minimum_size = Vector2(49, 63)
 layout_mode = 2
 
-[node name="Diamonds" type="Control" parent="CornerIcons"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerIcons/Diamonds"]
+[node name="TextureRect" type="TextureRect" parent="CornerIcons"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 9.0
@@ -814,97 +211,13 @@ offset_bottom = 14.0
 texture = ExtResource("13_vvunx")
 stretch_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="CornerIcons/Diamonds"]
+[node name="TextureRect2" type="TextureRect" parent="CornerIcons"]
 layout_mode = 0
 offset_left = 41.0
 offset_top = 49.0
 offset_right = 46.0
 offset_bottom = 54.0
 texture = ExtResource("13_vvunx")
-stretch_mode = 2
-flip_v = true
-
-[node name="Hearts" type="Control" parent="CornerIcons"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerIcons/Hearts"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 9.0
-offset_right = 8.0
-offset_bottom = 14.0
-texture = ExtResource("14_5sgyx")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerIcons/Hearts"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 49.0
-offset_right = 46.0
-offset_bottom = 54.0
-texture = ExtResource("14_5sgyx")
-stretch_mode = 2
-flip_v = true
-
-[node name="Clubs" type="Control" parent="CornerIcons"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerIcons/Clubs"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 9.0
-offset_right = 8.0
-offset_bottom = 14.0
-texture = ExtResource("15_jhufb")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerIcons/Clubs"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 49.0
-offset_right = 46.0
-offset_bottom = 54.0
-texture = ExtResource("15_jhufb")
-stretch_mode = 2
-flip_v = true
-
-[node name="Spades" type="Control" parent="CornerIcons"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerIcons/Spades"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 9.0
-offset_right = 8.0
-offset_bottom = 14.0
-texture = ExtResource("16_rvae4")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerIcons/Spades"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 49.0
-offset_right = 46.0
-offset_bottom = 54.0
-texture = ExtResource("16_rvae4")
 stretch_mode = 2
 flip_v = true
 
@@ -912,16 +225,7 @@ flip_v = true
 custom_minimum_size = Vector2(49, 63)
 layout_mode = 2
 
-[node name="A" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A"]
+[node name="TextureRect" type="TextureRect" parent="CornerText"]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 3.0
@@ -930,361 +234,13 @@ offset_bottom = 8.0
 texture = ExtResource("17_0hsvp")
 stretch_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A"]
+[node name="TextureRect2" type="TextureRect" parent="CornerText"]
 layout_mode = 0
 offset_left = 41.0
 offset_top = 55.0
 offset_right = 45.0
 offset_bottom = 60.0
 texture = ExtResource("17_0hsvp")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A2" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A2"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 8.0
-texture = ExtResource("18_gp10u")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A2"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 45.0
-offset_bottom = 60.0
-texture = ExtResource("18_gp10u")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A3" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A3"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 8.0
-texture = ExtResource("19_m7p7p")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A3"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 45.0
-offset_bottom = 60.0
-texture = ExtResource("19_m7p7p")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A4" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A4"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 8.0
-texture = ExtResource("20_ea5iy")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A4"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 45.0
-offset_bottom = 60.0
-texture = ExtResource("20_ea5iy")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A5" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A5"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 8.0
-texture = ExtResource("21_15mja")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A5"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 45.0
-offset_bottom = 60.0
-texture = ExtResource("21_15mja")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A6" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A6"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 8.0
-texture = ExtResource("22_d34uj")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A6"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 45.0
-offset_bottom = 60.0
-texture = ExtResource("22_d34uj")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A7" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A7"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 8.0
-texture = ExtResource("23_2mpog")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A7"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 45.0
-offset_bottom = 60.0
-texture = ExtResource("23_2mpog")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A8" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A8"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 8.0
-texture = ExtResource("24_cxw6p")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A8"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 45.0
-offset_bottom = 60.0
-texture = ExtResource("24_cxw6p")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A9" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A9"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 8.0
-texture = ExtResource("25_dt21r")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A9"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 45.0
-offset_bottom = 60.0
-texture = ExtResource("25_dt21r")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A10" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A10"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 9.0
-offset_bottom = 8.0
-texture = ExtResource("26_gyvrh")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A10"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 47.0
-offset_bottom = 60.0
-texture = ExtResource("26_gyvrh")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A11" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A11"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 8.0
-texture = ExtResource("27_alobj")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A11"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 45.0
-offset_bottom = 60.0
-texture = ExtResource("27_alobj")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A12" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A12"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 8.0
-texture = ExtResource("28_da4a6")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A12"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 45.0
-offset_bottom = 60.0
-texture = ExtResource("28_da4a6")
-stretch_mode = 2
-flip_h = true
-flip_v = true
-
-[node name="A13" type="Control" parent="CornerText"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="CornerText/A13"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 8.0
-offset_bottom = 8.0
-texture = ExtResource("29_r3djm")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="CornerText/A13"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 55.0
-offset_right = 45.0
-offset_bottom = 60.0
-texture = ExtResource("29_r3djm")
 stretch_mode = 2
 flip_h = true
 flip_v = true
