@@ -1,0 +1,224 @@
+[gd_scene load_steps=53 format=3 uid="uid://ds70qcom3x1lf"]
+
+[ext_resource type="PackedScene" uid="uid://byvwvd8y1i4ky" path="res://scenes/card_faces/1/club1.tscn" id="1_r5tt2"]
+[ext_resource type="PackedScene" uid="uid://cwxoh5f54tmn7" path="res://scenes/card_faces/2/club2.tscn" id="2_3gsyl"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/3/club3.tscn" id="3_1ldna"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/4/club4.tscn" id="4_f54m5"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/5/club5.tscn" id="5_ybi4h"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/6/club6.tscn" id="6_285go"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/7/club7.tscn" id="7_kxxo2"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/8/club8.tscn" id="8_ym7s0"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/9/club9.tscn" id="9_7qlbq"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/10/club10.tscn" id="10_hylsr"]
+[ext_resource type="PackedScene" uid="uid://lmukw01kb6xc" path="res://scenes/card_faces/11/club11.tscn" id="11_31ymi"]
+[ext_resource type="PackedScene" uid="uid://8gvsum1pdngp" path="res://scenes/card_faces/12/club12.tscn" id="12_heldc"]
+[ext_resource type="PackedScene" uid="uid://bvbajknfdtcoi" path="res://scenes/card_faces/13/club13.tscn" id="13_as1x6"]
+[ext_resource type="PackedScene" uid="uid://5u8mfjwvnt4f" path="res://scenes/card_faces/1/heart1.tscn" id="14_l7xv4"]
+[ext_resource type="PackedScene" uid="uid://4grmt1isgvp1" path="res://scenes/card_faces/2/heart2.tscn" id="15_q1t4y"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/3/heart3.tscn" id="16_y6xbe"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/4/heart4.tscn" id="17_jkxxb"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/5/heart5.tscn" id="18_ee7dh"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/6/heart6.tscn" id="19_86amb"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/7/heart7.tscn" id="20_8mknd"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/8/heart8.tscn" id="21_e05x3"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/9/heart9.tscn" id="22_h34j2"]
+[ext_resource type="PackedScene" uid="uid://ddyc3ullg5may" path="res://scenes/card_faces/10/heart10.tscn" id="23_nl454"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/11/heart11.tscn" id="24_4o2nf"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/12/heart12.tscn" id="25_gjqoa"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/13/heart13.tscn" id="26_aub0n"]
+[ext_resource type="PackedScene" uid="uid://cegmahv6q7dc1" path="res://scenes/card_faces/1/spade1.tscn" id="27_pstao"]
+[ext_resource type="PackedScene" uid="uid://cvilrggdaq71e" path="res://scenes/card_faces/2/spade2.tscn" id="28_kanhc"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/3/spade3.tscn" id="29_r2ria"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/4/spade4.tscn" id="30_yr55p"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/5/spade5.tscn" id="31_g6egm"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/6/spade6.tscn" id="32_kf42t"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/7/spade7.tscn" id="33_dpv22"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/8/spade8.tscn" id="34_1wsr2"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/9/spade9.tscn" id="35_j6bjv"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/10/spade10.tscn" id="36_e81ps"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/11/spade11.tscn" id="37_3ss6a"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/12/spade12.tscn" id="38_njy40"]
+[ext_resource type="PackedScene" path="res://scenes/card_faces/13/spade13.tscn" id="39_7uyor"]
+[ext_resource type="PackedScene" uid="uid://dp7qoqfsu8ksl" path="res://scenes/card_faces/1/diamond1.tscn" id="40_de04w"]
+[ext_resource type="PackedScene" uid="uid://dlw4l1sl6t2gu" path="res://scenes/card_faces/2/diamond2.tscn" id="41_k0w52"]
+[ext_resource type="PackedScene" uid="uid://sakbawlnsm0t" path="res://scenes/card_faces/3/diamond3.tscn" id="42_2nwn5"]
+[ext_resource type="PackedScene" uid="uid://bpheogddcybg2" path="res://scenes/card_faces/4/diamond4.tscn" id="43_gjlfm"]
+[ext_resource type="PackedScene" uid="uid://d4kdahwh5oa5u" path="res://scenes/card_faces/5/diamond5.tscn" id="44_ykh7e"]
+[ext_resource type="PackedScene" uid="uid://duuvf5melkolm" path="res://scenes/card_faces/6/diamond6.tscn" id="45_nhbps"]
+[ext_resource type="PackedScene" uid="uid://deqmqt6ye8php" path="res://scenes/card_faces/7/diamond7.tscn" id="46_qctf8"]
+[ext_resource type="PackedScene" uid="uid://3wxl5gmt57e6" path="res://scenes/card_faces/8/diamond8.tscn" id="47_gycnc"]
+[ext_resource type="PackedScene" uid="uid://c4u75f23k58lw" path="res://scenes/card_faces/9/diamond9.tscn" id="48_prxwb"]
+[ext_resource type="PackedScene" uid="uid://btvuop7w16h3x" path="res://scenes/card_faces/10/diamond10.tscn" id="49_bilgc"]
+[ext_resource type="PackedScene" uid="uid://ca0t3xi1iy1w0" path="res://scenes/card_faces/11/diamond11.tscn" id="50_8eusm"]
+[ext_resource type="PackedScene" uid="uid://24n05r6gbej5" path="res://scenes/card_faces/12/diamond12.tscn" id="51_8k3rx"]
+[ext_resource type="PackedScene" uid="uid://c7iepjkmmpkjw" path="res://scenes/card_faces/13/diamond13.tscn" id="52_85wrq"]
+
+[node name="CardFacesAll" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 13
+
+[node name="CardFaceTemplate" parent="GridContainer" instance=ExtResource("1_r5tt2")]
+layout_mode = 2
+
+[node name="CardFaceTemplate2" parent="GridContainer" instance=ExtResource("2_3gsyl")]
+layout_mode = 2
+
+[node name="CardFaceTemplate3" parent="GridContainer" instance=ExtResource("3_1ldna")]
+layout_mode = 2
+
+[node name="CardFaceTemplate4" parent="GridContainer" instance=ExtResource("4_f54m5")]
+layout_mode = 2
+
+[node name="CardFaceTemplate5" parent="GridContainer" instance=ExtResource("5_ybi4h")]
+layout_mode = 2
+
+[node name="CardFaceTemplate6" parent="GridContainer" instance=ExtResource("6_285go")]
+layout_mode = 2
+
+[node name="CardFaceTemplate7" parent="GridContainer" instance=ExtResource("7_kxxo2")]
+layout_mode = 2
+
+[node name="CardFaceTemplate8" parent="GridContainer" instance=ExtResource("8_ym7s0")]
+layout_mode = 2
+
+[node name="CardFaceTemplate9" parent="GridContainer" instance=ExtResource("9_7qlbq")]
+layout_mode = 2
+
+[node name="CardFaceTemplate10" parent="GridContainer" instance=ExtResource("10_hylsr")]
+layout_mode = 2
+
+[node name="CardFaceTemplate11" parent="GridContainer" instance=ExtResource("11_31ymi")]
+layout_mode = 2
+
+[node name="CardFaceTemplate12" parent="GridContainer" instance=ExtResource("12_heldc")]
+layout_mode = 2
+
+[node name="CardFaceTemplate13" parent="GridContainer" instance=ExtResource("13_as1x6")]
+layout_mode = 2
+
+[node name="CardFaceTemplate14" parent="GridContainer" instance=ExtResource("14_l7xv4")]
+layout_mode = 2
+
+[node name="CardFaceTemplate15" parent="GridContainer" instance=ExtResource("15_q1t4y")]
+layout_mode = 2
+
+[node name="CardFaceTemplate16" parent="GridContainer" instance=ExtResource("16_y6xbe")]
+layout_mode = 2
+
+[node name="CardFaceTemplate17" parent="GridContainer" instance=ExtResource("17_jkxxb")]
+layout_mode = 2
+
+[node name="CardFaceTemplate18" parent="GridContainer" instance=ExtResource("18_ee7dh")]
+layout_mode = 2
+
+[node name="CardFaceTemplate19" parent="GridContainer" instance=ExtResource("19_86amb")]
+layout_mode = 2
+
+[node name="CardFaceTemplate20" parent="GridContainer" instance=ExtResource("20_8mknd")]
+layout_mode = 2
+
+[node name="CardFaceTemplate21" parent="GridContainer" instance=ExtResource("21_e05x3")]
+layout_mode = 2
+
+[node name="CardFaceTemplate22" parent="GridContainer" instance=ExtResource("22_h34j2")]
+layout_mode = 2
+
+[node name="CardFaceTemplate23" parent="GridContainer" instance=ExtResource("23_nl454")]
+layout_mode = 2
+
+[node name="CardFaceTemplate24" parent="GridContainer" instance=ExtResource("24_4o2nf")]
+layout_mode = 2
+
+[node name="CardFaceTemplate25" parent="GridContainer" instance=ExtResource("25_gjqoa")]
+layout_mode = 2
+
+[node name="CardFaceTemplate26" parent="GridContainer" instance=ExtResource("26_aub0n")]
+layout_mode = 2
+
+[node name="CardFaceTemplate27" parent="GridContainer" instance=ExtResource("27_pstao")]
+layout_mode = 2
+
+[node name="CardFaceTemplate28" parent="GridContainer" instance=ExtResource("28_kanhc")]
+layout_mode = 2
+
+[node name="CardFaceTemplate29" parent="GridContainer" instance=ExtResource("29_r2ria")]
+layout_mode = 2
+
+[node name="CardFaceTemplate30" parent="GridContainer" instance=ExtResource("30_yr55p")]
+layout_mode = 2
+
+[node name="CardFaceTemplate31" parent="GridContainer" instance=ExtResource("31_g6egm")]
+layout_mode = 2
+
+[node name="CardFaceTemplate32" parent="GridContainer" instance=ExtResource("32_kf42t")]
+layout_mode = 2
+
+[node name="CardFaceTemplate33" parent="GridContainer" instance=ExtResource("33_dpv22")]
+layout_mode = 2
+
+[node name="CardFaceTemplate34" parent="GridContainer" instance=ExtResource("34_1wsr2")]
+layout_mode = 2
+
+[node name="CardFaceTemplate35" parent="GridContainer" instance=ExtResource("35_j6bjv")]
+layout_mode = 2
+
+[node name="CardFaceTemplate36" parent="GridContainer" instance=ExtResource("36_e81ps")]
+layout_mode = 2
+
+[node name="CardFaceTemplate37" parent="GridContainer" instance=ExtResource("37_3ss6a")]
+layout_mode = 2
+
+[node name="CardFaceTemplate38" parent="GridContainer" instance=ExtResource("38_njy40")]
+layout_mode = 2
+
+[node name="CardFaceTemplate39" parent="GridContainer" instance=ExtResource("39_7uyor")]
+layout_mode = 2
+
+[node name="CardFaceTemplate40" parent="GridContainer" instance=ExtResource("40_de04w")]
+layout_mode = 2
+
+[node name="CardFaceTemplate41" parent="GridContainer" instance=ExtResource("41_k0w52")]
+layout_mode = 2
+
+[node name="CardFaceTemplate42" parent="GridContainer" instance=ExtResource("42_2nwn5")]
+layout_mode = 2
+
+[node name="CardFaceTemplate43" parent="GridContainer" instance=ExtResource("43_gjlfm")]
+layout_mode = 2
+
+[node name="CardFaceTemplate44" parent="GridContainer" instance=ExtResource("44_ykh7e")]
+layout_mode = 2
+
+[node name="CardFaceTemplate45" parent="GridContainer" instance=ExtResource("45_nhbps")]
+layout_mode = 2
+
+[node name="CardFaceTemplate46" parent="GridContainer" instance=ExtResource("46_qctf8")]
+layout_mode = 2
+
+[node name="CardFaceTemplate47" parent="GridContainer" instance=ExtResource("47_gycnc")]
+layout_mode = 2
+
+[node name="CardFaceTemplate48" parent="GridContainer" instance=ExtResource("48_prxwb")]
+layout_mode = 2
+
+[node name="CardFaceTemplate49" parent="GridContainer" instance=ExtResource("49_bilgc")]
+layout_mode = 2
+
+[node name="CardFaceTemplate50" parent="GridContainer" instance=ExtResource("50_8eusm")]
+layout_mode = 2
+
+[node name="CardFaceTemplate51" parent="GridContainer" instance=ExtResource("51_8k3rx")]
+layout_mode = 2
+
+[node name="CardFaceTemplate52" parent="GridContainer" instance=ExtResource("52_85wrq")]
+layout_mode = 2
