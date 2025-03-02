@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://5u8mfjwvnt4f"]
+
+[ext_resource type="PackedScene" uid="uid://dp7qoqfsu8ksl" path="res://scenes/card_faces/1/diamond1.tscn" id="1_6k82n"]
+[ext_resource type="Texture2D" uid="uid://cyukg8qkhtq3j" path="res://textures/card_components/card_component_heart_centre_large.tres" id="2_2chk4"]
+[ext_resource type="Texture2D" uid="uid://o7x3ywhfs8ln" path="res://textures/card_components/card_component_heart_icon.tres" id="3_5fo7h"]
+
+[node name="CardFaceTemplate" instance=ExtResource("1_6k82n")]
+
+[node name="CentreLarge" parent="." index="1"]
+texture = ExtResource("2_2chk4")
+
+[node name="TextureRect" parent="CornerIcons" index="0"]
+texture = ExtResource("3_5fo7h")
+
+[node name="TextureRect2" parent="CornerIcons" index="1"]
+texture = ExtResource("3_5fo7h")
