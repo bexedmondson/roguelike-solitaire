@@ -15,6 +15,7 @@ offset_bottom = -585.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+size_flags_vertical = 0
 ratio = 0.7778
 
 [node name="BG" type="TextureRect" parent="."]
