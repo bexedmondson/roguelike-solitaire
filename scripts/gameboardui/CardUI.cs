@@ -5,6 +5,8 @@ public partial class CardUI : Control
 {
     [Export]
     public TextureRect textureRect;
+    [Export]
+    public Control cardSceneContainer;
 
     [Export]
     public PackedScene stackContainerScene;
