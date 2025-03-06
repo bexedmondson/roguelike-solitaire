@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://n40ya4f7qfcp"]
-
-[ext_resource type="Texture2D" uid="uid://bcxemaegdoldw" path="res://textures/card_components/cards_dynamic_template_compressed.png" id="1_psg4t"]
-
-[resource]
-atlas = ExtResource("1_psg4t")
-region = Rect2(49, 6, 5, 5)

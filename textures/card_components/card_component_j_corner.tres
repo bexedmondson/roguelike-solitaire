@@ -1,8 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cf28xuvcy2bra"]
-
-[ext_resource type="Texture2D" uid="uid://bcxemaegdoldw" path="res://textures/card_components/cards_dynamic_template_compressed.png" id="1_lt1eb"]
-
-[resource]
-atlas = ExtResource("1_lt1eb")
-region = Rect2(125, 10, 3, 5)
-filter_clip = true
