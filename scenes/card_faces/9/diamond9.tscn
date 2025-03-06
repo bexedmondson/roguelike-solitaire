@@ -5,7 +5,7 @@
 
 [node name="CardFaceTemplate" instance=ExtResource("1_70voj")]
 
-[node name="TextureRect_Centre2" parent="CentreSmall" index="1"]
+[node name="TextureRect_Centre3" parent="CentreSmall" index="0"]
 visible = false
 
 [node name="TextureRect_Centre" parent="CentreSmall" index="2"]

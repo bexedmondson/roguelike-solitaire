@@ -5,54 +5,6 @@
 
 [node name="CardFaceTemplate" instance=ExtResource("1_fcg4s")]
 
-[node name="TextureRect_Centre2" parent="CentreSmall" index="1"]
-visible = false
-
-[node name="TextureRect_Centre" parent="CentreSmall" index="2"]
-visible = false
-
-[node name="TextureRect_Left5" parent="CentreSmall" index="4"]
-visible = false
-
-[node name="TextureRect_Left3" parent="CentreSmall" index="5"]
-visible = false
-
-[node name="TextureRect_Left2" parent="CentreSmall" index="6"]
-visible = false
-
-[node name="TextureRect_Left" parent="CentreSmall" index="7"]
-visible = false
-
-[node name="TextureRect_Left6" parent="CentreSmall" index="8"]
-visible = false
-
-[node name="TextureRect_Left4" parent="CentreSmall" index="9"]
-visible = false
-
-[node name="TextureRect_Left7" parent="CentreSmall" index="10"]
-visible = false
-
-[node name="TextureRect_Right4" parent="CentreSmall" index="11"]
-visible = false
-
-[node name="TextureRect_Right3" parent="CentreSmall" index="12"]
-visible = false
-
-[node name="TextureRect_Right2" parent="CentreSmall" index="13"]
-visible = false
-
-[node name="TextureRect_Right" parent="CentreSmall" index="14"]
-visible = false
-
-[node name="TextureRect_Right6" parent="CentreSmall" index="15"]
-visible = false
-
-[node name="TextureRect_Right5" parent="CentreSmall" index="16"]
-visible = false
-
-[node name="TextureRect_Right7" parent="CentreSmall" index="17"]
-visible = false
-
 [node name="TextureRect" parent="CornerText" index="0"]
 texture = ExtResource("2_x5vxx")
 
