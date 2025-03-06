@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnksdropsoxgv"]
+[gd_scene load_steps=4 format=3 uid="uid://cnksdropsoxgv"]
 
 [ext_resource type="PackedScene" uid="uid://8gvsum1pdngp" path="res://scenes/card_faces/12/club12.tscn" id="1_qkcf2"]
+[ext_resource type="Texture2D" uid="uid://n40ya4f7qfcp" path="res://textures/card_components/card_component_spade_centre_small.tres" id="2_dewh0"]
 [ext_resource type="Texture2D" uid="uid://canyt58m8e6l7" path="res://textures/card_components/card_component_spade_icon.tres" id="3_v3clw"]
 
-[node name="CardFaceTemplate2" instance=ExtResource("1_qkcf2")]
+[node name="CardFaceTemplate" instance=ExtResource("1_qkcf2")]
 
 [node name="TextureRect" parent="CornerIcons" index="0"]
 offset_right = 10.0

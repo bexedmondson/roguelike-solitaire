@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ctid8uuct0jn4" path="res://textures/card_components/card_component_heart_centre_small.tres" id="2_ucl24"]
 [ext_resource type="Texture2D" uid="uid://o7x3ywhfs8ln" path="res://textures/card_components/card_component_heart_icon.tres" id="3_o5qk4"]
 
-[node name="CardFaceTemplate2" instance=ExtResource("1_mhdrk")]
+[node name="CardFaceTemplate" instance=ExtResource("1_mhdrk")]
 
 [node name="TextureRect_Left3" parent="CentreSmall" index="5"]
 texture = ExtResource("2_ucl24")
