@@ -1,7 +1,22 @@
-[gd_scene format=3 uid="uid://brjg4bfklb875"]
+[gd_scene load_steps=2 format=3 uid="uid://brjg4bfklb875"]
 
-[node name="CardStackContainer" type="VBoxContainer"]
-custom_minimum_size = Vector2(64, 64)
-offset_right = 64.0
-offset_bottom = 64.0
+[ext_resource type="Script" uid="uid://c1m0s6i1tfm7u" path="res://scripts/gameboardui/StackDragUI.cs" id="1_5o0mt"]
+
+[node name="CardStackContainer" type="Control" node_paths=PackedStringArray("container")]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+script = ExtResource("1_5o0mt")
+container = NodePath("VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+offset_left = -21.0
+offset_top = 5.0
+offset_right = 21.0
+offset_bottom = 47.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
 theme_override_constants/separation = 20

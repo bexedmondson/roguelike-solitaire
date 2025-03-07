@@ -97,8 +97,8 @@ public partial class CardUI : Control
             return default(Variant);
         }
 
-        var stackContainerPreview = stackContainerScene.Instantiate<Container>(); 
-        stackContainerPreview.CustomMinimumSize = Vector2.One * 64;
+        var stackContainerPreview = stackContainerScene.Instantiate<StackDragUI>(); 
+        stackContainerPreview.container.CustomMinimumSize = Vector2.One * 42;
         stackContainerPreview.SetAnchorsPreset(LayoutPreset.TopRight);
 
         var stackDragData = cardStackUI.GetDragData(this);
@@ -107,7 +107,9 @@ public partial class CardUI : Control
             var newCardUI = (CardUI)this.Duplicate();
             newCardUI.Visible = true;
             newCardUI.textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/{card.suit.Name()}_{card.level}.tres");
-            stackContainerPreview.AddChild(newCardUI);
+            newCardUI.OffsetLeft = -21;
+            newCardUI.OffsetRight = -21;
+            stackContainerPreview.container.AddChild(newCardUI);
         }
         
         SetDragPreview(stackContainerPreview);

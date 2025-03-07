@@ -52,7 +52,7 @@ script = ExtResource("3_liwha")
 _max_size = 16
 _current_font_size = 16
 _editor_defaults_set = true
-metadata/_custom_type_script = ExtResource("3_liwha")
+metadata/_custom_type_script = "uid://dep3qrmufmisf"
 
 [connection signal="button_down" from="TextureRect/Button" to="." method="ClickStart"]
 [connection signal="button_up" from="TextureRect/Button" to="." method="ClickEnd"]
