@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc5p27ys75wk6"]
+
+[ext_resource type="Script" uid="uid://djcjdc5fc6751" path="res://scripts/statemachine/Shell.cs" id="1_bo4bk"]
+
+[sub_resource type="Gradient" id="Gradient_2cnh3"]
+colors = PackedColorArray(0, 0.282353, 0, 1, 0, 0.164706, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oel05"]
+gradient = SubResource("Gradient_2cnh3")
+
+[node name="Shell" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Bootstrap" type="Node" parent="."]
+script = ExtResource("1_bo4bk")
+
+[node name="LoadingCanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="TextureRect" type="TextureRect" parent="LoadingCanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_oel05")
+
+[node name="Label" type="Label" parent="LoadingCanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -110.0
+offset_right = 117.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(0, 100)
+theme_override_font_sizes/font_size = 50
+text = "Loading..."

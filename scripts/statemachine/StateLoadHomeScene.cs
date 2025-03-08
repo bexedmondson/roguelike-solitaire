@@ -5,7 +5,7 @@ public class StateLoadHomeScene : AbstractState
 {
     protected override string Name => nameof(StateLoadHomeScene);
 
-    private readonly string m_mainScenePath = "res://scenes/menu.tscn";
+    private readonly string m_mainScenePath = "res://scenes/game_round.tscn";
 
     protected override async Task DoStateTasksAsync()
     {

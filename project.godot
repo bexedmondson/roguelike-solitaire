@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="roguelike-solitaire"
-run/main_scene="uid://dackwo5gts6w3"
+run/main_scene="uid://dc5p27ys75wk6"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+CurrentSceneAccessor="*res://scripts/injection/CurrentSceneAccessor.cs"
 
 [display]
 
