@@ -50,11 +50,41 @@ public class Tableau : IInjectable
         }
     }
 
+    public bool TryAutoMoveCard(Stack sourceStack, Card card)
+    {
+        foreach (Foundation foundation in foundations)
+        {
+            if (foundation.CanDropSingleCard(card))
+            {
+                MoveCards(sourceStack, foundation, card);
+                return true;
+            }
+        }
+
+        foreach (Stack stack in stacks)
+        {
+            if (stack.CanDropSingleCard(card))
+            {
+                MoveCards(sourceStack, stack, card);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void MoveCards(Stack sourceStack, Stack targetStack, Godot.Collections.Array<Card> cards)
     {
-        //GD.Print($"on drop, source {sourceStack.Name}, target {dropTarget}");
+        //GD.Print($"on move, source {sourceStack.Name}, target {dropTarget}");
         sourceStack.RemoveCards(cards);
         targetStack.AddCards(cards);
+    }
+
+    public void MoveCards(Stack sourceStack, Stack targetStack, Card card)
+    {
+        //GD.Print($"on move, source {sourceStack.Name}, target {dropTarget}");
+        sourceStack.RemoveCards(card);
+        targetStack.AddCards(card);
     }
 
     public void FlipDeck()

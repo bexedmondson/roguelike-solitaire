@@ -17,6 +17,17 @@ public class Foundation : Stack
 
     }
 
+    public override bool CanDropSingleCard(Card dropCard)
+    {
+        if (dropCard.suit != suit)
+            return false;
+
+        if (IsEmpty)
+            return dropCard.level == 1;
+
+        return dropCard.level == cards.Count + 1;
+    }
+
     public override bool CanDropCards(Array<Card> dropCards)
     {
         if (dropCards.Count != 1)
@@ -25,12 +36,6 @@ public class Foundation : Stack
             return false;
         }
 
-        var card = dropCards[0];
-        if (card.suit != suit)
-
-        if (IsEmpty)
-            return card.level == 1;
-
-        return card.level == cards.Count + 1;
+        return CanDropSingleCard(dropCards[0]);
     }
 }

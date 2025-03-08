@@ -37,7 +37,7 @@ public class DrawPile : Stack
         List<Card> dealtCards = new();
         for (int i = 0; i < count; i++)
         {
-            Card card = m_cards[0];
+            Card card = CurrentEndCard;
             dealtCards.Add(card);
             m_cards.Remove(card);
         } 

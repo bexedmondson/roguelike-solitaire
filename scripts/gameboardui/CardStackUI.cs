@@ -17,7 +17,7 @@ public partial class CardStackUI : TextureRect
 
     public virtual bool CanDrag => true;
 
-    protected Stack stack;
+    public Stack stack { get; protected set; }
 
     private List<CardUI> cardTextureRects = new();
 
@@ -53,10 +53,10 @@ public partial class CardStackUI : TextureRect
         //if (dragCards.Count > 1)
             //GD.Print($"  {dragCards[1].suit}{dragCards[1].level}");
 
-        if (cardTextureRects == null || cardTextureRects.Count == 0)
-        {
+        //if (cardTextureRects == null || cardTextureRects.Count == 0)
+        //{
             //GD.PrintErr("stack empty!");
-        }
+        //}
 
         foreach (CardUI cardUI in cardTextureRects)
         {

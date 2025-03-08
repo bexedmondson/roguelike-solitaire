@@ -13,6 +13,8 @@ public class Stack
 
     public bool IsEmpty => Count == 0;
 
+    public Card CurrentEndCard => IsEmpty ? null : m_cards[0];
+
     protected Stack() { }
 
     public Stack(List<Card> initialCards)
@@ -27,6 +29,13 @@ public class Stack
 
         InternalOnStackUpdated();
     }
+    
+    public void AddCards(Card droppedCard)
+    {
+        m_cards.Insert(0, droppedCard);
+
+        InternalOnStackUpdated();
+    }
 
     public void RemoveCards(Godot.Collections.Array<Card> removedCards)
     {
@@ -34,6 +43,13 @@ public class Stack
         {
             m_cards.Remove(card);
         }
+        
+        InternalOnStackUpdated();
+    }
+
+    public void RemoveCards(Card removedCard)
+    {
+        cards.Remove(removedCard);
         
         InternalOnStackUpdated();
     }
@@ -49,8 +65,18 @@ public class Stack
         if (IsEmpty)
             return;
 
-        if (!cards[0].flipped)
-            cards[0].flipped = true;
+        if (!CurrentEndCard.flipped)
+            CurrentEndCard.flipped = true;
+    }
+
+    public virtual bool CanDropSingleCard(Card dropCard)
+    {
+        if (IsEmpty)
+            return dropCard.level == 13;
+        //GD.Print($"current drop card {dropCard.suit} {dropCard.level}");
+        //GD.Print($"current stack end card {currentEndCard.suit} {currentEndCard.level}");
+        
+        return dropCard.suit.CanStackOnSuit(CurrentEndCard.suit) && dropCard.level == CurrentEndCard.level - 1;
     }
 
     public virtual bool CanDropCards(Godot.Collections.Array<Card> dropCards)
@@ -60,14 +86,8 @@ public class Stack
             GD.PushWarning("Why are you trying to drop no cards on a stack?");
             return false;
         }
-
-        if (IsEmpty)
-            return dropCards[^1].level == 13;
-        
-        Card currentEndCard = cards[0]; //GD.Print($"current stack end card {currentEndCard.suit} {currentEndCard.level}");
-        var topDropCard = dropCards[^1]; //GD.Print($"current drop card {topDropCard.suit} {topDropCard.level}");
-        
-        return topDropCard.suit.CanStackOnSuit(currentEndCard.suit) && topDropCard.level == currentEndCard.level - 1;
+   
+        return CanDropSingleCard(dropCards[^1]);
     }
 
     public List<Card> GetStackSectionFromSelectedCard(Card selectedCard)

@@ -23,6 +23,7 @@ public partial class CardUI : Control
         }
     }
 
+    private Tableau tableau;
     private CardStackUI cardStackUI;
 
     public void SetStack(CardStackUI cardStackUI)
@@ -32,12 +33,14 @@ public partial class CardUI : Control
 
     public override void _EnterTree()
     {
+        tableau = InjectionManager.Get<Tableau>();
         OnDebugToggled();
         GameDebug.OnGameDebugToggled += OnDebugToggled;
     }
 
     public override void _ExitTree()
     {
+        tableau = null;
         GameDebug.OnGameDebugToggled -= OnDebugToggled;
     }
 
@@ -48,46 +51,77 @@ public partial class CardUI : Control
     }
 
     private bool mouseOn = false;
-    private double timeSinceLastClick = 0;
+    private double timeSinceLastClick = clickThreshold;
     private const double clickThreshold = 0.5;
 
     public override void _Process(double delta)
     {
-        if (!mouseOn && timeSinceLastClick < clickThreshold)
+        if (!mouseOn)
+            return;
+        
+        if (timeSinceLastClick < clickThreshold)
         {
             timeSinceLastClick += delta;
+            //GD.Print(timeSinceLastClick);
         }
     }
 
     public void ClickStart()
     {
-        //GD.Print("mouseOn is " + timeSinceLastClick);
+        GD.Print("mouseOn time is " + timeSinceLastClick);
         //if it's been less than the threshold since the last click, this is a double click and we don't want to click again
-        if (mouseOn || timeSinceLastClick < clickThreshold)
+        if (mouseOn)
             return;
 
-        //GD.Print("mouse on");
+        GD.Print("mouse on");
         mouseOn = true;
     }
 
     public void MouseExit()
     {
-        //GD.Print("mouseExit is " + timeSinceLastClick);
-        //GD.Print("mouse on");
+        GD.Print("mouseExit time is " + timeSinceLastClick);
+        GD.Print("mouse exit");
         mouseOn = false;
-        timeSinceLastClick = 0;
+        timeSinceLastClick = clickThreshold;
     }
 
     public void ClickEnd()
     {
-        //GD.Print("clickend is " + timeSinceLastClick);
-        //GD.Print("click end");
-        if (mouseOn && timeSinceLastClick > clickThreshold && cardStackUI is DrawPileUI cardDeckUI)
+        GD.Print("clickend time is " + timeSinceLastClick);
+        GD.Print("click end");
+
+        if (!mouseOn) //mouse has moved off the card, so this is a drag and we shouldn't do anything with clicks here
         {
-            mouseOn = false;
-            timeSinceLastClick = 0;
-            cardDeckUI.OnClick();
+            return;
         }
+
+        GD.Print("time since last " + timeSinceLastClick);
+
+        if (timeSinceLastClick >= clickThreshold)
+        {
+            GD.Print("---------click");
+            //mouseOn = false;
+            timeSinceLastClick = 0;
+
+            if (cardStackUI is DrawPileUI cardDeckUI)
+                cardDeckUI.OnClick();
+        }
+        else
+        {
+            GD.Print("---------double click");
+            //mouseOn = false;
+            timeSinceLastClick = 0;
+
+            if (cardStackUI is not DrawPileUI && cardStackUI is not FoundationUI)
+                OnCardDoubleClick();
+        }
+    }
+
+    private void OnCardDoubleClick()
+    {
+        GD.Print($"on card double click {card.Name}");
+        if (cardStackUI.stack.CurrentEndCard == card)
+            tableau.TryAutoMoveCard(cardStackUI.stack, card);
     }
 
     public override Variant _GetDragData(Vector2 atPosition) 
