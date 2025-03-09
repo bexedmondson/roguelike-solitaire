@@ -15,11 +15,14 @@ public class Stack
 
     public Card CurrentEndCard => IsEmpty ? null : m_cards[0];
 
+    private ScoreManager scoreManager;
+
     protected Stack() { }
 
     public Stack(List<Card> initialCards)
     {
         m_cards = initialCards;
+        scoreManager = InjectionManager.Get<ScoreManager>();
         InternalOnStackUpdated();
     }
 
@@ -66,7 +69,10 @@ public class Stack
             return;
 
         if (!CurrentEndCard.flipped)
+        {
             CurrentEndCard.flipped = true;
+            scoreManager?.OnCardFlipped(this);
+        }
     }
 
     public virtual bool CanDropSingleCard(Card dropCard)

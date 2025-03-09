@@ -12,8 +12,14 @@ public class Tableau : IInjectable
     public DrawPile drawPile;
     public DiscardPile discardPile;
 
+    private ScoreManager scoreManager;
+
     public Tableau()
     {
+        scoreManager = InjectionManager.Get<ScoreManager>();
+        scoreManager.ResetScore();
+        scoreManager.SetScoreTracking(false);
+
         stacks = new List<Stack>();
         foundations = new List<Foundation>();
         drawPile = new DrawPile();
@@ -81,6 +87,7 @@ public class Tableau : IInjectable
         //GD.Print($"on move, source {sourceStack.Name}, target {dropTarget}");
         sourceStack.RemoveCards(cards);
         targetStack.AddCards(cards);
+        scoreManager.OnCardMoved(sourceStack, targetStack);
     }
 
     public void MoveCards(Stack sourceStack, Stack targetStack, Card card)
@@ -88,6 +95,7 @@ public class Tableau : IInjectable
         //GD.Print($"on move, source {sourceStack.Name}, target {dropTarget}");
         sourceStack.RemoveCards(card);
         targetStack.AddCards(card);
+        scoreManager.OnCardMoved(sourceStack, targetStack);
     }
 
     public void FlipDeck()

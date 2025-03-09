@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dackwo5gts6w3"]
+[gd_scene load_steps=14 format=3 uid="uid://dackwo5gts6w3"]
 
 [ext_resource type="Script" uid="uid://cy6cxfoecx1m5" path="res://scripts/gameboardui/SolitaireGameUI.cs" id="1_e17pb"]
 [ext_resource type="PackedScene" uid="uid://devch01ty8fnq" path="res://scenes/foundation.tscn" id="1_jtt5i"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dep3qrmufmisf" path="res://addons/label_font_auto_sizer/label_auto_sizer.gd" id="5_8f8x2"]
 [ext_resource type="Script" uid="uid://bujpvimoqxdqp" path="res://scripts/gameboardui/DiscardPileUI.cs" id="6_6ebo5"]
 [ext_resource type="Script" uid="uid://ddxyfnmdknoar" path="res://scripts/debug/DebugButton.cs" id="11_6ebo5"]
+[ext_resource type="Script" uid="uid://byfwo2jwwn23u" path="res://scripts/scoring/ScoreUI.cs" id="11_kjea6"]
 
 [node name="GameRound" type="Control" node_paths=PackedStringArray("stackUIs", "foundationUIs", "drawPileUI", "discardPileUI")]
 layout_mode = 3
@@ -187,6 +188,19 @@ texture = ExtResource("3_e17pb")
 [node name="Foundation4" parent="CardPiles/Foundations" instance=ExtResource("1_jtt5i")]
 layout_mode = 2
 texture = ExtResource("4_otdc4")
+
+[node name="Label" type="Label" parent="CardPiles"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.8
+anchor_right = 0.2
+anchor_bottom = 0.8
+offset_right = 40.0
+offset_bottom = 34.0
+theme_override_font_sizes/font_size = 24
+text = "0"
+script = ExtResource("11_kjea6")
 
 [node name="Tableau" type="Control" parent="."]
 layout_mode = 1

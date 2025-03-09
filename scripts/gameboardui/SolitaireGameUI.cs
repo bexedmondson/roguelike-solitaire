@@ -37,6 +37,9 @@ public partial class SolitaireGameUI : Control
         drawPileUI.InitialiseWithStack(tableau.drawPile);
 
         discardPileUI.InitialiseWithStack(tableau.discardPile);
+
+        ScoreManager scoreManager = InjectionManager.Get<ScoreManager>();
+        scoreManager.SetScoreTracking(true);
     }
 
     public void OnFoundationUpdated()

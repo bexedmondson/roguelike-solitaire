@@ -7,5 +7,6 @@ public class StateInitialiseSystems : AbstractState
 
     protected override async Task DoStateTasksAsync()
     {
+        ScoreManager scoreManager = new ScoreManager();
     }
 }
