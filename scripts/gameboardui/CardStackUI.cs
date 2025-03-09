@@ -49,23 +49,10 @@ public partial class CardStackUI : TextureRect
     {
         var dragCards = stack.GetStackSectionFromSelectedCard(selectedCardUI.card);
 
-        //GD.Print($"drag count {dragCards.Count} {dragCards[0].suit}{dragCards[0].level}");
-        //if (dragCards.Count > 1)
-            //GD.Print($"  {dragCards[1].suit}{dragCards[1].level}");
-
-        //if (cardTextureRects == null || cardTextureRects.Count == 0)
-        //{
-            //GD.PrintErr("stack empty!");
-        //}
-
         foreach (CardUI cardUI in cardTextureRects)
         {
-            //if (cardUI == null)
-                //GD.PrintErr("card null!");
             if (dragCards.Contains(cardUI.card))
-            {
                 cardUI.Visible = false;
-            }
         }
 
         var cardDrag = new CardDrag();
@@ -117,16 +104,13 @@ public partial class CardStackUI : TextureRect
 
         foreach (Card card in stack.cards)
         {
-            //GD.Print($"making card {card.Name}");
             var cardControl = cardTextureRectScene.Instantiate<CardUI>();
-            cardControl.card = card;
-            cardControl.SetStack(this);
-            var textureRect = cardControl.textureRect;
-            //GD.Print($"trying to get texture {card.suit.Name()}_{card.level}");
+            cardControl.Setup(card, this);
+            
             if (card.flipped)
-                textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/{card.suit.Name()}_{card.level}.tres");
+                cardControl.textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/{card.suit.Name()}_{card.level}.tres");
             else
-                textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/card_back.tres");
+                cardControl.textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/card_back.tres");
             
             cardControl.MouseFilter = card.flipped ? MouseFilterEnum.Stop : MouseFilterEnum.Pass;
             cardContainer.AddChild(cardControl);

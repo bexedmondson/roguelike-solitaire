@@ -25,7 +25,7 @@ public class Tableau : IInjectable
         {
             foreach (var suit in suits)
             {
-                drawPile.Add(new Card(){suit = (Suit)suit, level = i});
+                drawPile.Add(new Card(){suit = (Suit)suit, level = i, tableau = this});
                 //GD.Print($"Added card {card.Name}");
             }
         }
@@ -52,6 +52,9 @@ public class Tableau : IInjectable
 
     public bool TryAutoMoveCard(Stack sourceStack, Card card)
     {
+        if (sourceStack.CurrentEndCard != card)
+            return false;
+
         foreach (Foundation foundation in foundations)
         {
             if (foundation.CanDropSingleCard(card))

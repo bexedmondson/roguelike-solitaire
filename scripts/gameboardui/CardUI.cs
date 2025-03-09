@@ -26,8 +26,9 @@ public partial class CardUI : Control
     private Tableau tableau;
     private CardStackUI cardStackUI;
 
-    public void SetStack(CardStackUI cardStackUI)
+    public void Setup(Card card, CardStackUI cardStackUI)
     {
+        this.card = card;
         this.cardStackUI = cardStackUI;
     }
 
@@ -91,16 +92,13 @@ public partial class CardUI : Control
         GD.Print("click end");
 
         if (!mouseOn) //mouse has moved off the card, so this is a drag and we shouldn't do anything with clicks here
-        {
             return;
-        }
 
         GD.Print("time since last " + timeSinceLastClick);
 
         if (timeSinceLastClick >= clickThreshold)
         {
             GD.Print("---------click");
-            //mouseOn = false;
             timeSinceLastClick = 0;
 
             if (cardStackUI is DrawPileUI cardDeckUI)
@@ -109,7 +107,6 @@ public partial class CardUI : Control
         else
         {
             GD.Print("---------double click");
-            //mouseOn = false;
             timeSinceLastClick = 0;
 
             if (cardStackUI is not DrawPileUI && cardStackUI is not FoundationUI)
@@ -120,8 +117,7 @@ public partial class CardUI : Control
     private void OnCardDoubleClick()
     {
         GD.Print($"on card double click {card.Name}");
-        if (cardStackUI.stack.CurrentEndCard == card)
-            tableau.TryAutoMoveCard(cardStackUI.stack, card);
+        tableau.TryAutoMoveCard(cardStackUI.stack, card);
     }
 
     public override Variant _GetDragData(Vector2 atPosition) 
