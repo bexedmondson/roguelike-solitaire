@@ -253,7 +253,6 @@ flat = true
 script = ExtResource("11_6ebo5")
 
 [node name="StateTicker" type="Node" parent="."]
-unique_name_in_owner = true
 script = ExtResource("14_pdfg6")
 
 [connection signal="button_up" from="CardPiles/Draw/DrawPile/Button" to="CardPiles/Draw/DrawPile" method="OnClick"]

@@ -44,7 +44,7 @@ public abstract class AbstractState
 
     protected void EndState()
     {
-        OnFinished?.Invoke(this);
+        OnFinished?.Invoke(GetNextState());
     }
 
     protected AbstractState GetNextState()

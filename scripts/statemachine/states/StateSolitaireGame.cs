@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Godot;
 
 public class StateSolitaireGame : AbstractState
 {
@@ -9,8 +10,16 @@ public class StateSolitaireGame : AbstractState
     protected override async Task DoStateTasksAsync()
     {
         var sceneTreeRoot = InjectionManager.Get<CurrentSceneAccessor>().CurrentSceneTree.Root;
-        StateTicker sceneTicker = sceneTreeRoot.GetNode<StateTicker>("%SceneTicker");
-        sceneTicker.OnTick += OnSceneTick;
+
+        StateTicker stateTicker = sceneTreeRoot.GetNodeOrNull<StateTicker>("/root/GameRound/StateTicker");
+
+        if (stateTicker == null)
+        {
+            GD.Print("ticker is null!");
+            return;
+        }
+
+        stateTicker.OnTick += OnSceneTick;
     }
 
     private void OnSceneTick()
