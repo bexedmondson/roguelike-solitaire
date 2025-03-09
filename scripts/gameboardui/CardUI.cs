@@ -69,36 +69,36 @@ public partial class CardUI : Control
 
     public void ClickStart()
     {
-        GD.Print("mouseOn time is " + timeSinceLastClick);
+        //GD.Print("mouseOn time is " + timeSinceLastClick);
         //if it's been less than the threshold since the last click, this is a double click and we don't want to click again
         if (mouseOn)
             return;
 
-        GD.Print("mouse on");
+        //GD.Print("mouse on");
         mouseOn = true;
     }
 
     public void MouseExit()
     {
-        GD.Print("mouseExit time is " + timeSinceLastClick);
-        GD.Print("mouse exit");
+        //GD.Print("mouseExit time is " + timeSinceLastClick);
+        //GD.Print("mouse exit");
         mouseOn = false;
         timeSinceLastClick = clickThreshold;
     }
 
     public void ClickEnd()
     {
-        GD.Print("clickend time is " + timeSinceLastClick);
-        GD.Print("click end");
+        //GD.Print("clickend time is " + timeSinceLastClick);
+        //GD.Print("click end");
 
         if (!mouseOn) //mouse has moved off the card, so this is a drag and we shouldn't do anything with clicks here
             return;
 
-        GD.Print("time since last " + timeSinceLastClick);
+        //GD.Print("time since last " + timeSinceLastClick);
 
         if (timeSinceLastClick >= clickThreshold)
         {
-            GD.Print("---------click");
+            //GD.Print("---------click");
             timeSinceLastClick = 0;
 
             if (cardStackUI is DrawPileUI cardDeckUI)
@@ -106,7 +106,7 @@ public partial class CardUI : Control
         }
         else
         {
-            GD.Print("---------double click");
+            //GD.Print("---------double click");
             timeSinceLastClick = 0;
 
             if (cardStackUI is not DrawPileUI && cardStackUI is not FoundationUI)
@@ -116,7 +116,7 @@ public partial class CardUI : Control
 
     private void OnCardDoubleClick()
     {
-        GD.Print($"on card double click {card.Name}");
+        //GD.Print($"on card double click {card.Name}");
         tableau.TryAutoMoveCard(cardStackUI.stack, card);
     }
 
