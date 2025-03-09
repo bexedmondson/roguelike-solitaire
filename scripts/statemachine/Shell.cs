@@ -7,7 +7,7 @@ public partial class Shell : Node
 
     private AbstractState[] m_stateMachine = new AbstractState[]
     {
-        new StateInitialiseSystems(),
+        new StateInitialiseShellSystems(),
         
         new StateLoadConfigData(),
         new StateLoadSaveData(),

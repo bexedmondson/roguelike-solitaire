@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class StateInitialiseSystems : AbstractState
+public class StateInitialiseShellSystems : AbstractState
 {
-    protected override string Name => nameof(StateInitialiseSystems);
+    protected override string Name => nameof(StateInitialiseShellSystems);
 
     protected override async Task DoStateTasksAsync()
     {
