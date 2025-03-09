@@ -42,4 +42,9 @@ public class InjectionManager
         GD.PrintErr($"Injection of type {typeof(T)} failed!");
         return default(T);
     }
+
+    public static bool Has<T>() where T : IInjectable
+    {
+        return m_injectableMap.ContainsKey(typeof(T));
+    }
 }
