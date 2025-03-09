@@ -3,7 +3,7 @@ using System;
 
 public partial class Shell : Node
 {
-    private AbstractState m_currentState;
+    /*private AbstractState m_currentState;
 
     private AbstractState[] m_stateMachine = new AbstractState[]
     {
@@ -19,10 +19,17 @@ public partial class Shell : Node
 	public override void _Ready()
 	{
         m_currentState = m_stateMachine[0];
-        m_currentState.Begin();
-	}
+        m_currentState.Run();
+	}*/
 
     public override void _Process(double delta)
+    {
+        StateMachine stateMachine = new StateMachine();
+        stateMachine.Begin();
+        this.SetProcess(false);
+    }
+
+    /*public override void _Process(double delta)
     {
         if (!m_currentState.isFinished)
             return;
@@ -35,10 +42,10 @@ public partial class Shell : Node
         {
             m_currentState = m_stateMachine[currentStateIndex + 1];
             GD.Print("beginning state: " + m_currentState.GetType().ToString());
-            m_currentState.Begin();
+            m_currentState.Run();
             return;
         }
 
         this.SetProcess(false);
-    }
+    }*/
 }
