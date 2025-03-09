@@ -4,6 +4,8 @@ using Godot;
 
 public class Tableau : IInjectable
 {
+    public event Action OnTableauComplete;
+
     private int stackCount = 7;
     public List<Stack> stacks;
 
@@ -38,7 +40,9 @@ public class Tableau : IInjectable
 
         foreach (Suit suit in Enum.GetValues(typeof(Suit)))
         {
-            foundations.Add(new Foundation(suit));
+            var foundation = new Foundation(suit);
+            foundations.Add(foundation);
+            foundation.OnStackUpdated += CheckForCompletion;
         }
 
         InjectionManager.Register<Tableau>(this);
@@ -104,19 +108,20 @@ public class Tableau : IInjectable
         drawPile.AddCards(cardsToFlip);
     }
 
-    public bool IsComplete()
+    public void CheckForCompletion()
     {
         if (!drawPile.IsEmpty)
-            return false;
+            return;
         if (!discardPile.IsEmpty)
-            return false;
+            return;
         foreach (Stack stack in stacks)
         {
             if (!stack.IsEmpty)
-                return false;
+                return;
         }
 
-        return true;
+        GD.Print("yay you did it!");
+        OnTableauComplete?.Invoke();
     }
 
     public void LogTableau()

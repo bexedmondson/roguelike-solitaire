@@ -31,7 +31,6 @@ public partial class SolitaireGameUI : Control
         {
             Foundation foundation = tableau.foundations[i];
             foundationUIs[i].InitialiseWithStack(foundation);
-            foundation.OnStackUpdated += OnFoundationUpdated;
         }
 
         drawPileUI.InitialiseWithStack(tableau.drawPile);
@@ -40,12 +39,5 @@ public partial class SolitaireGameUI : Control
 
         ScoreManager scoreManager = InjectionManager.Get<ScoreManager>();
         scoreManager.SetScoreTracking(true);
-    }
-
-    public void OnFoundationUpdated()
-    {
-        //GD.Print("on foundation updated");
-        if (tableau.IsComplete())
-            GD.Print("yay you did it");
     }
 }
