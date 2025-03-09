@@ -25,5 +25,7 @@ public class StateLoadHomeScene : AbstractState
         var currentSceneAccessor = InjectionManager.Get<CurrentSceneAccessor>();
         currentSceneAccessor.ActiveScreenSceneNode = mainSceneInstance;
         currentSceneAccessor.CurrentSceneTree.Root.AddChild(mainSceneInstance);
+        
+        EndState();
     }
 }

@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Godot;
 
 public class StateDisableLoadingScreen : AbstractState
 {
@@ -12,5 +10,6 @@ public class StateDisableLoadingScreen : AbstractState
 
         loadingScreenLayer.Visible = false;
         loadingScreenLayer.SetProcess(false);
+        EndState();
     }
 }

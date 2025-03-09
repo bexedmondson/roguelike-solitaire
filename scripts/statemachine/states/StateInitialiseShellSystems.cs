@@ -8,5 +8,7 @@ public class StateInitialiseShellSystems : AbstractState
     protected override async Task DoStateTasksAsync()
     {
         ScoreManager scoreManager = new ScoreManager();
+        
+        EndState();
     }
 }

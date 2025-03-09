@@ -1,22 +1,31 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 
 public abstract class AbstractState
 {
-    public bool isFinished { get; set; } = false;
+    public event Action<AbstractState> OnFinished;
 
     protected abstract string Name { get; }
 
-    public async void Begin()
+    private AbstractState defaultNextState;
+
+    private List<AbstractStateTransition> nextStateTransitionAlternatives = new();
+
+    public void AddStateTransitions(AbstractState defaultState, AbstractStateTransition[] stateTransitions = null)
     {
-        isFinished = false;
+        defaultNextState = defaultState;
 
-       await StateTasksAsync();
+        if (stateTransitions != null)
+            nextStateTransitionAlternatives.AddRange(stateTransitions);
+    }
 
-       isFinished = true;
+    public async void Run()
+    {
+        await StateTasksAsync();
     }
 
     private async Task StateTasksAsync()
@@ -31,5 +40,21 @@ public abstract class AbstractState
     protected virtual async Task DoStateTasksAsync()
     {
         
+    }
+
+    protected void EndState()
+    {
+        OnFinished?.Invoke(this);
+    }
+
+    protected AbstractState GetNextState()
+    {
+        foreach (var stateTransition in nextStateTransitionAlternatives)
+        {
+            if (stateTransition.EvaluateShouldTransition())
+                return stateTransition.targetState;
+        }
+
+        return defaultNextState;
     }
 }

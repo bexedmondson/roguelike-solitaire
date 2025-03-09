@@ -9,5 +9,7 @@ public class StateLoadConfigData : AbstractState
         DataLoader dataLoader = new DataLoader();
 
         await dataLoader.LoadAllResources();
+        
+        EndState();
     }
 }
