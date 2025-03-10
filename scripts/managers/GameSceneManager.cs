@@ -10,7 +10,7 @@ public class GameSceneManager : IInjectable
         InjectionManager.Register(this);
     }
 
-    public void AddScene(PackedScene loadedScene)
+    public void InstantiateScene(PackedScene loadedScene)
     {
         if (activeGameSceneNode != null)
         {
@@ -19,10 +19,17 @@ public class GameSceneManager : IInjectable
 
         var gameSceneInstance = loadedScene.Instantiate();
         activeGameSceneNode = gameSceneInstance;
-        
+
+        activeGameSceneNode.SetProcess(false);
+    }
+
+    public void AddGameSceneNodeToTree()
+    {   
         var currentSceneAccessor = InjectionManager.Get<CurrentSceneAccessor>();
         currentSceneAccessor.ActiveScreenSceneNode = activeGameSceneNode;
         currentSceneAccessor.CurrentSceneTree.Root.AddChild(activeGameSceneNode);
+
+        activeGameSceneNode.SetProcess(true);
     }
 
     public async Task RemoveActiveGameSceneNode()

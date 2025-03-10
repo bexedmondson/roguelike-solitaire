@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using Godot;
 
-public class StateTeardownGame : AbstractState
+public class StateSolitaireGameTeardown : AbstractState
 {
-    protected override string Name => nameof(StateTeardownGame);
+    protected override string Name => nameof(StateSolitaireGameTeardown);
 
     protected override async Task DoStateTasksAsync()
     {

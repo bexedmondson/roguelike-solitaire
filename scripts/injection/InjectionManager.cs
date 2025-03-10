@@ -25,7 +25,7 @@ public class InjectionManager
     {
         if (m_injectableMap.ContainsKey(typeof(T)))
         {
-            GD.PushError("[InjectionManager] Injectable of type " + typeof(T).AssemblyQualifiedName + " already registered! Discarding new.");
+            GD.PushError($"[{nameof(InjectionManager)}] Injectable of type {typeof(T).AssemblyQualifiedName} already registered! Discarding new.");
             return;
         }
 

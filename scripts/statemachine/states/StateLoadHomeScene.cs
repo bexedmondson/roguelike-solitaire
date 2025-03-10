@@ -22,7 +22,8 @@ public class StateLoadHomeScene : AbstractState
         var mainScene = (PackedScene)ResourceLoader.LoadThreadedGet(m_mainScenePath);
         
         GameSceneManager gameSceneManager = InjectionManager.Get<GameSceneManager>();
-        gameSceneManager.AddScene(mainScene);
+        gameSceneManager.
+        InstantiateScene(mainScene);
         
         EndState();
     }

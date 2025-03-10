@@ -32,19 +32,23 @@ public class StateMachine
         var loadConfigDataState = new StateLoadConfigData();
         var loadSaveDataState = new StateLoadSaveData();
         var loadHomeSceneState = new StateLoadHomeScene();
+        var solitaireGameSetupState = new StateSolitaireGameSetup();
         var disableLoadingScreenState = new StateDisableLoadingScreen();
-        var solitaireGameState = new StateSolitaireGame();
+        var solitaireGameRunState = new StateSolitaireGameRun();
         var enableLoadingScreenState = new StateEnableLoadingScreen();
-        var teardownGameState = new StateTeardownGame();
+        var solitaireGameTeardownState = new StateSolitaireGameTeardown();
 
         shellSystemsState.AddStateTransitions(loadConfigDataState);
         loadConfigDataState.AddStateTransitions(loadSaveDataState);
         loadSaveDataState.AddStateTransitions(loadHomeSceneState);
-        loadHomeSceneState.AddStateTransitions(disableLoadingScreenState);
-        disableLoadingScreenState.AddStateTransitions(solitaireGameState);
-        solitaireGameState.AddStateTransitions(enableLoadingScreenState);
-        enableLoadingScreenState.AddStateTransitions(teardownGameState);
-        teardownGameState.AddStateTransitions(loadHomeSceneState);
+        loadHomeSceneState.AddStateTransitions(solitaireGameSetupState);
+        
+        solitaireGameSetupState.AddStateTransitions(disableLoadingScreenState);
+        disableLoadingScreenState.AddStateTransitions(solitaireGameRunState);
+
+        solitaireGameRunState.AddStateTransitions(enableLoadingScreenState);
+        enableLoadingScreenState.AddStateTransitions(solitaireGameTeardownState);
+        solitaireGameTeardownState.AddStateTransitions(loadHomeSceneState);
     }
 
     private void TransitionToState(AbstractState newState)

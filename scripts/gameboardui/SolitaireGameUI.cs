@@ -19,8 +19,7 @@ public partial class SolitaireGameUI : Control
     public override void _EnterTree()
     {
         var tableauManager = InjectionManager.Get<TableauManager>();
-        tableau = tableauManager.NewTableau();
-        tableau.Deal();
+        tableau = tableauManager.CurrentTableau;
 
         for (int i = 0; i < tableau.stacks.Count; i++)
         {
@@ -37,8 +36,5 @@ public partial class SolitaireGameUI : Control
         drawPileUI.InitialiseWithStack(tableau.drawPile);
 
         discardPileUI.InitialiseWithStack(tableau.discardPile);
-
-        ScoreManager scoreManager = InjectionManager.Get<ScoreManager>();
-        scoreManager.SetScoreTracking(true);
     }
 }
