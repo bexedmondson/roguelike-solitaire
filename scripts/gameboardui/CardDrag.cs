@@ -12,6 +12,8 @@ public partial class CardDrag : GodotObject
     public void InitialiseCardDrag(Stack sourceStack, List<Card> cards)
     {
         this.sourceStack = sourceStack;
+
+        cards.Sort((lhs, rhs) => rhs.level.CompareTo(lhs.level));
         this.cards = new Godot.Collections.Array<Card>(cards);
     }
 
