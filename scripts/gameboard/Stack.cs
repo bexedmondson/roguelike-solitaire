@@ -109,4 +109,9 @@ public class Stack
 
         return dragCards;
     }
+
+    public void Cleanup()
+    {
+        OnStackUpdated = null;
+    }
 }

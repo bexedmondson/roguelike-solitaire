@@ -122,6 +122,18 @@ public class Tableau
         OnTableauComplete?.Invoke();
     }
 
+    public void Cleanup()
+    {
+        foreach (var foundation in foundations)
+            foundation.Cleanup();
+
+        foreach (var stack in stacks)
+            stack.Cleanup();
+        
+        drawPile.Cleanup();
+        discardPile.Cleanup();
+    }
+
     public void LogTableau()
     {
         GD.Print("\n--- TABLEAU LOG ---\n");
