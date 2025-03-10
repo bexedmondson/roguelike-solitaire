@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://dep3qrmufmisf" path="res://addons/label_font_auto_sizer/label_auto_sizer.gd" id="5_8f8x2"]
 [ext_resource type="Script" uid="uid://bujpvimoqxdqp" path="res://scripts/gameboardui/DiscardPileUI.cs" id="6_6ebo5"]
 [ext_resource type="Script" uid="uid://ddxyfnmdknoar" path="res://scripts/debug/DebugButton.cs" id="11_6ebo5"]
-[ext_resource type="Script" uid="uid://byfwo2jwwn23u" path="res://scripts/scoring/ScoreUI.cs" id="11_kjea6"]
+[ext_resource type="Script" uid="uid://byfwo2jwwn23u" path="res://scripts/gameboardui/ScoreUI.cs" id="11_kjea6"]
 [ext_resource type="Script" uid="uid://b1rmi5vddxl4d" path="res://scripts/statemachine/StateTicker.cs" id="14_pdfg6"]
 
 [node name="GameRound" type="Control" node_paths=PackedStringArray("stackUIs", "foundationUIs", "drawPileUI", "discardPileUI")]

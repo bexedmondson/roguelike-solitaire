@@ -7,7 +7,7 @@ public partial class DrawPileUI : CardStackUI
     public void OnClick()
     {
         if (tableau == null)
-            tableau = InjectionManager.Get<Tableau>();
+            tableau = InjectionManager.Get<TableauManager>().CurrentTableau;
 
         //GD.Print("deck input");
         if (stack.IsEmpty)

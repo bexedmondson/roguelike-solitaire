@@ -35,20 +35,16 @@ public class StateMachine
         var disableLoadingScreenState = new StateDisableLoadingScreen();
         var solitaireGameState = new StateSolitaireGame();
         var enableLoadingScreenState = new StateEnableLoadingScreen();
+        var teardownGameState = new StateTeardownGame();
 
         shellSystemsState.AddStateTransitions(loadConfigDataState);
-
         loadConfigDataState.AddStateTransitions(loadSaveDataState);
-        
         loadSaveDataState.AddStateTransitions(loadHomeSceneState);
-
         loadHomeSceneState.AddStateTransitions(disableLoadingScreenState);
-
         disableLoadingScreenState.AddStateTransitions(solitaireGameState);
-
         solitaireGameState.AddStateTransitions(enableLoadingScreenState);
-
-        enableLoadingScreenState.AddStateTransitions(loadHomeSceneState);
+        enableLoadingScreenState.AddStateTransitions(teardownGameState);
+        teardownGameState.AddStateTransitions(loadHomeSceneState);
     }
 
     private void TransitionToState(AbstractState newState)

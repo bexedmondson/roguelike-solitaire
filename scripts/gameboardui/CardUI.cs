@@ -34,7 +34,7 @@ public partial class CardUI : Control
 
     public override void _EnterTree()
     {
-        tableau = InjectionManager.Get<Tableau>();
+        tableau = InjectionManager.Get<TableauManager>().CurrentTableau;
         OnDebugToggled();
         GameDebug.OnGameDebugToggled += OnDebugToggled;
     }

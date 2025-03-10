@@ -20,11 +20,9 @@ public class StateLoadHomeScene : AbstractState
         }
 
         var mainScene = (PackedScene)ResourceLoader.LoadThreadedGet(m_mainScenePath);
-        var mainSceneInstance = mainScene.Instantiate();
         
-        var currentSceneAccessor = InjectionManager.Get<CurrentSceneAccessor>();
-        currentSceneAccessor.ActiveScreenSceneNode = mainSceneInstance;
-        currentSceneAccessor.CurrentSceneTree.Root.AddChild(mainSceneInstance);
+        GameSceneManager gameSceneManager = InjectionManager.Get<GameSceneManager>();
+        gameSceneManager.AddScene(mainScene);
         
         EndState();
     }

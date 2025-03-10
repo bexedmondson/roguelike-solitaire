@@ -37,7 +37,7 @@ public partial class DebugButton : Button
     {
         GameDebug.On = !GameDebug.On;
 
-        var tableau = InjectionManager.Get<Tableau>();
+        var tableau = InjectionManager.Get<TableauManager>().CurrentTableau;
         tableau.LogTableau();
     }
 }

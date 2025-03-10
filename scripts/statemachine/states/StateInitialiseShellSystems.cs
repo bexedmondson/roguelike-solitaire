@@ -8,7 +8,9 @@ public class StateInitialiseShellSystems : AbstractState
     protected override async Task DoStateTasksAsync()
     {
         ScoreManager scoreManager = new ScoreManager();
-        
+        TableauManager tableauManager = new TableauManager();
+        GameSceneManager gameSceneManager = new GameSceneManager();
+
         EndState();
     }
 }

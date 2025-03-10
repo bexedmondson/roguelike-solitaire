@@ -18,7 +18,8 @@ public partial class SolitaireGameUI : Control
 
     public override void _EnterTree()
     {
-        tableau = new Tableau();
+        var tableauManager = InjectionManager.Get<TableauManager>();
+        tableau = tableauManager.NewTableau();
         tableau.Deal();
 
         for (int i = 0; i < tableau.stacks.Count; i++)

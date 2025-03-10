@@ -17,7 +17,7 @@ public partial class CardDrag : GodotObject
 
     public void DoCardDrop(Stack targetStack)
     {
-        var tableau = InjectionManager.Get<Tableau>();
+        var tableau = InjectionManager.Get<TableauManager>().CurrentTableau;
         tableau.MoveCards(sourceStack, targetStack, cards);
     }
 }

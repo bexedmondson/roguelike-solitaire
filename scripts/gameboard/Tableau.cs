@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public class Tableau : IInjectable
+public class Tableau
 {
     public event Action OnTableauComplete;
 
@@ -44,8 +44,6 @@ public class Tableau : IInjectable
             foundations.Add(foundation);
             foundation.OnStackUpdated += CheckForCompletion;
         }
-
-        InjectionManager.Register<Tableau>(this);
     }
 
     public void Deal()
