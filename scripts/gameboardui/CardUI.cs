@@ -127,18 +127,20 @@ public partial class CardUI : Control
             return default(Variant);
         }
 
+        float width = this.Size.X;
         var stackContainerPreview = stackContainerScene.Instantiate<StackDragUI>(); 
-        stackContainerPreview.container.CustomMinimumSize = Vector2.One * 42;
+        stackContainerPreview.container.CustomMinimumSize = Vector2.One * width;
         stackContainerPreview.SetAnchorsPreset(LayoutPreset.TopRight);
 
         var stackDragData = cardStackUI.GetDragData(this);
-        foreach (var card in stackDragData.cards)
+        for (int i = stackDragData.cards.Count - 1; i >= 0; i--)
         {
+            Card card = stackDragData.cards[i];
             var newCardUI = (CardUI)this.Duplicate();
             newCardUI.Visible = true;
             newCardUI.textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/{card.suit.Name()}_{card.level}.tres");
-            newCardUI.OffsetLeft = -21;
-            newCardUI.OffsetRight = -21;
+            newCardUI.OffsetLeft = -width / 2;
+            newCardUI.OffsetRight = -width / 2;
             stackContainerPreview.container.AddChild(newCardUI);
         }
         
