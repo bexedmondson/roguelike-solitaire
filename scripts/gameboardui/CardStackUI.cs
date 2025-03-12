@@ -10,6 +10,9 @@ public partial class CardStackUI : TextureRect
     private Container cardContainer;
 
     [Export]
+    private bool forceCardsFullOverlap = false;
+
+    [Export]
     private PackedScene cardTextureRectScene;
 
     [Export]
@@ -117,5 +120,35 @@ public partial class CardStackUI : TextureRect
             cardContainer.MoveChild(cardControl, 0);
             cardTextureRects.Add(cardControl);
         }
+
+        cardContainer.ChildEnteredTree += SetSeparation;
+    }
+
+    private void SetSeparation(Node node)
+    {
+        cardContainer.ChildEnteredTree -= SetSeparation;
+
+        var childControl = node as CardUI;
+        childControl.ItemRectChanged += () => OnCardReady(childControl);
+    }
+
+    private void OnCardReady(CardUI cardUI)
+    {
+        int separation = 0;
+        if (forceCardsFullOverlap)
+        {
+            GD.Print("child size in " + this.Name + " is " + cardUI.Size + ", " + cardUI.Name);
+            GD.Print(Name + " separation to " + -cardUI.Size.Y );
+            separation = Mathf.RoundToInt( -cardUI.Size.Y );
+        }
+        else
+        {
+            GD.Print("child size in " + this.Name + " is " + cardUI.Size + ", " + cardUI.Name);
+            double adjustedSize = -cardUI.Size.Y * 0.75;
+            GD.Print(Name + " separation to " + adjustedSize);
+            separation = Mathf.RoundToInt( adjustedSize );
+        }
+
+        cardContainer.AddThemeConstantOverride("separation", separation);
     }
 }

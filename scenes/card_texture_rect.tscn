@@ -4,19 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://brjg4bfklb875" path="res://scenes/drag_card_stack_container.tscn" id="2_15xuq"]
 [ext_resource type="Script" uid="uid://dep3qrmufmisf" path="res://addons/label_font_auto_sizer/label_auto_sizer.gd" id="3_liwha"]
 
-[node name="CardTextureRect" type="Control" node_paths=PackedStringArray("textureRect", "debugLabel")]
-layout_mode = 3
-anchors_preset = 0
+[node name="CardTextureRect" type="PanelContainer" node_paths=PackedStringArray("textureRect", "debugLabel")]
 script = ExtResource("1_lfdei")
 textureRect = NodePath("TextureRect")
 stackContainerScene = ExtResource("2_15xuq")
 debugLabel = NodePath("DebugLabel")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
+layout_mode = 2
 expand_mode = 5
 stretch_mode = 5
 
@@ -32,16 +27,8 @@ flat = true
 
 [node name="DebugLabel" type="Label" parent="."]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -0.5
-offset_top = -11.5
-offset_right = 0.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -50,6 +37,7 @@ autowrap_mode = 3
 clip_text = true
 script = ExtResource("3_liwha")
 _max_size = 16
+_min_size = 10
 _current_font_size = 16
 _editor_defaults_set = true
 metadata/_custom_type_script = "uid://dep3qrmufmisf"
