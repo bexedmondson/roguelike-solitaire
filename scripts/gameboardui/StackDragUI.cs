@@ -22,9 +22,9 @@ public partial class StackDragUI : Control
 
     private void OnCardReady(CardUI cardUI)
     {
-        GD.Print("child size in " + this.Name + " is " + cardUI.Size + ", " + cardUI.Name);
+        //GD.Print("child size in " + this.Name + " is " + cardUI.Size + ", " + cardUI.Name);
         double adjustedSize = -cardUI.Size.Y * 0.75;
-        GD.Print(Name + " separation to " + adjustedSize);
+        //GD.Print(Name + " separation to " + adjustedSize);
         int separation = Mathf.RoundToInt( adjustedSize );
 
         container.AddThemeConstantOverride("separation", separation);
