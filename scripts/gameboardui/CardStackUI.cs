@@ -137,15 +137,15 @@ public partial class CardStackUI : TextureRect
         int separation = 0;
         if (forceCardsFullOverlap)
         {
-            GD.Print("child size in " + this.Name + " is " + cardUI.Size + ", " + cardUI.Name);
-            GD.Print(Name + " separation to " + -cardUI.Size.Y );
+            //GD.Print("child size in " + this.Name + " is " + cardUI.Size + ", " + cardUI.Name);
+            //GD.Print(Name + " separation to " + -cardUI.Size.Y );
             separation = Mathf.RoundToInt( -cardUI.Size.Y );
         }
         else
         {
-            GD.Print("child size in " + this.Name + " is " + cardUI.Size + ", " + cardUI.Name);
+            //GD.Print("child size in " + this.Name + " is " + cardUI.Size + ", " + cardUI.Name);
             double adjustedSize = -cardUI.Size.Y * 0.75;
-            GD.Print(Name + " separation to " + adjustedSize);
+            //GD.Print(Name + " separation to " + adjustedSize);
             separation = Mathf.RoundToInt( adjustedSize );
         }
 
