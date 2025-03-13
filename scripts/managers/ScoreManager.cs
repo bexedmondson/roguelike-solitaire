@@ -37,14 +37,14 @@ public class ScoreManager : IInjectable
         if (targetStack is Foundation)
         {
             score += foundationCardAddedScore;
-            GD.Print($"adding {foundationCardAddedScore} score due to foundation add");
+            //GD.Print($"adding {foundationCardAddedScore} score due to foundation add");
             OnScoreChanged?.Invoke(foundationCardAddedScore);
         }
         
         if (sourceStack is DiscardPile)
         {
             score += deckCardRemovedScore;
-            GD.Print($"adding {deckCardRemovedScore} score due to deck remove");
+            //GD.Print($"adding {deckCardRemovedScore} score due to deck remove");
             OnScoreChanged?.Invoke(deckCardRemovedScore);
         }
     }
@@ -57,7 +57,7 @@ public class ScoreManager : IInjectable
         if (sourceStack is not Foundation && sourceStack is not DiscardPile && sourceStack is not DrawPile)
         {
             score += stackCardFlippedScore;
-            GD.Print($"adding {stackCardFlippedScore} score due to card flip");
+            //GD.Print($"adding {stackCardFlippedScore} score due to card flip");
             OnScoreChanged?.Invoke(stackCardFlippedScore);
         }
     }

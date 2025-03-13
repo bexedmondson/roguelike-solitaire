@@ -32,7 +32,7 @@ public partial class BoosterStackUI : Control
 
     private void OnBoosterPrimed()
     {
-        GD.Print("on primed");
+        //GD.Print("on primed");
         stackHighlight.SetProcess(true);
         stackHighlight.Visible = true;
 
@@ -42,7 +42,7 @@ public partial class BoosterStackUI : Control
 
     private void OnBoosterDeactivated()
     {
-        GD.Print("on deactivate");
+        //GD.Print("on deactivate");
         stackHighlight.SetProcess(false);
         stackHighlight.Visible = false;
 
@@ -52,7 +52,7 @@ public partial class BoosterStackUI : Control
 
     public void OnBoosterClick()
     {
-        GD.Print("booster click " + Name);
+        //GD.Print("booster click " + Name);
         boosterManager.ProcessBooster(stack);
     }
 }
