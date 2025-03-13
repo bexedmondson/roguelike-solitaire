@@ -10,6 +10,7 @@ public class StateInitialiseShellSystems : AbstractState
         ScoreManager scoreManager = new ScoreManager();
         TableauManager tableauManager = new TableauManager();
         GameSceneManager gameSceneManager = new GameSceneManager();
+        BoosterManager boosterManager= new BoosterManager();
 
         EndState();
     }

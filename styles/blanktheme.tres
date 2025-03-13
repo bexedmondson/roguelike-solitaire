@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c14llexa8ybhe"]
+
+[ext_resource type="StyleBox" uid="uid://dxw2ti02q6oyv" path="res://styles/default_style_box_empty.tres" id="1_hd5ox"]
+
+[resource]
+Button/constants/h_separation = 0
+Button/styles/disabled = ExtResource("1_hd5ox")
+Button/styles/disabled_mirrored = ExtResource("1_hd5ox")
+Button/styles/focus = ExtResource("1_hd5ox")
+Button/styles/hover = ExtResource("1_hd5ox")
+Button/styles/normal = ExtResource("1_hd5ox")
+Button/styles/pressed = ExtResource("1_hd5ox")

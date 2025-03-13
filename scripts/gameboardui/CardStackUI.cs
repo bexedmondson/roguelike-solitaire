@@ -16,6 +16,9 @@ public partial class CardStackUI : TextureRect
     private PackedScene cardTextureRectScene;
 
     [Export]
+    private BoosterStackUI boosterStackUI;
+
+    [Export]
     private Label debugLabel;
 
     public virtual bool CanDrag => true;
@@ -44,12 +47,15 @@ public partial class CardStackUI : TextureRect
     public void InitialiseWithStack(Stack stack)
     {
         this.stack = stack;
+        boosterStackUI?.SetStack(stack);
+
         UpdateCardVisuals();
         this.stack.OnStackUpdated += UpdateCardVisuals;
     }
 
     public virtual CardDrag GetDragData(CardUI selectedCardUI)
     {
+        //TODO return empty if booster active
         var dragCards = stack.GetStackSectionFromSelectedCard(selectedCardUI.card);
 
         foreach (CardUI cardUI in cardTextureRects)
