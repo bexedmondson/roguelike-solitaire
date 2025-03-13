@@ -80,7 +80,7 @@ public class Stack
         if (IsEmpty)
             return dropCard.level == 13;
         //GD.Print($"current drop card {dropCard.suit} {dropCard.level}");
-        //GD.Print($"current stack end card {currentEndCard.suit} {currentEndCard.level}");
+        //GD.Print($"current stack end card {CurrentEndCard.suit} {CurrentEndCard.level}");
         
         return dropCard.suit.CanStackOnSuit(CurrentEndCard.suit) && dropCard.level == CurrentEndCard.level - 1;
     }
@@ -98,8 +98,8 @@ public class Stack
 
     public List<Card> GetStackSectionFromSelectedCard(Card selectedCard)
     {
-        //GD.Print($"selectedcard {selectedCard.card.suit}{selectedCard.card.level}");
-        //GD.Print($"index {cards.IndexOf(selectedCard.card)}, lastindex {cards.Count - 1}");
+        //GD.Print($"selectedcard {selectedCard.suit}{selectedCard.level}");
+        //GD.Print($"index {cards.IndexOf(selectedCard)}, lastindex {cards.Count - 1}");
         int selectedCardIndex = m_cards.IndexOf(selectedCard);
         var dragCards = m_cards.GetRange(0, selectedCardIndex+1);//, cards.Count - selectedCardIndex);
 

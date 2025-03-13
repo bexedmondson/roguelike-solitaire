@@ -113,6 +113,8 @@ public partial class CardStackUI : TextureRect
 
         foreach (Card card in stack.cards)
         {
+            //GD.Print(card.Name);
+
             var cardControl = cardTextureRectScene.Instantiate<CardUI>();
             cardControl.Setup(card, this);
             

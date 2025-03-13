@@ -116,7 +116,7 @@ public partial class CardUI : Control
 
     private void OnCardDoubleClick()
     {
-        //GD.Print($"on card double click {card.Name}");
+        //GD.Print($"on card double click {card.Name} in stack {cardStackUI.Name}");
         tableau.TryAutoMoveCard(cardStackUI.stack, card);
     }
 

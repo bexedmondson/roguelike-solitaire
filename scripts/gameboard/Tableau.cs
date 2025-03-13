@@ -60,13 +60,13 @@ public class Tableau
 
     public bool TryAutoMoveCard(Stack sourceStack, Card card)
     {
-        if (sourceStack.CurrentEndCard != card)
-            return false;
-
-        foreach (Foundation foundation in foundations)
+        if (sourceStack.CurrentEndCard == card)
         {
-            if (foundation.CanDropSingleCard(card))
+            foreach (Foundation foundation in foundations)
             {
+                if (!foundation.CanDropSingleCard(card))
+                    continue;
+                
                 MoveCards(sourceStack, foundation, card);
                 return true;
             }
@@ -74,11 +74,18 @@ public class Tableau
 
         foreach (Stack stack in stacks)
         {
-            if (stack.CanDropSingleCard(card))
+            if (stack == sourceStack)
+                continue;
+
+            if (!stack.CanDropSingleCard(card))
             {
-                MoveCards(sourceStack, stack, card);
-                return true;
+                //GD.Print("  can't drop on stack");
+                continue;
             }
+
+            var moveCards = new Godot.Collections.Array<Card>(sourceStack.GetStackSectionFromSelectedCard(card));
+            MoveCards(sourceStack, stack, moveCards);
+            return true;
         }
 
         return false;
@@ -86,7 +93,7 @@ public class Tableau
 
     public void MoveCards(Stack sourceStack, Stack targetStack, Godot.Collections.Array<Card> cards)
     {
-        //GD.Print($"on move, source {sourceStack.Name}, target {dropTarget}");
+        //GD.Print($"on move, card count {cards.Count}");
         sourceStack.RemoveCards(cards);
         targetStack.AddCards(cards);
         scoreManager.OnCardMoved(sourceStack, targetStack);
