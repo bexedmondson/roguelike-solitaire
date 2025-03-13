@@ -22,7 +22,7 @@ public class BoosterManager : IInjectable
 
     public void ProcessBooster(Stack stack)
     {
-        GD.Print("booster process");
+        //GD.Print("booster process");
 
         //TODO: maybe need to rename this so it's clear that nothing else should be able to activate until this booster is done
         //but the booster has been actually set off rather than deactivated
