@@ -83,8 +83,16 @@ public class Tableau
                 continue;
             }
 
-            var moveCards = new Godot.Collections.Array<Card>(sourceStack.GetStackSectionFromSelectedCard(card));
-            MoveCards(sourceStack, stack, moveCards);
+            if (sourceStack.CurrentEndCard == card)
+            {
+                MoveCards(sourceStack, stack, card);
+            }
+            else
+            {
+                var moveCards = new Godot.Collections.Array<Card>(sourceStack.GetStackSectionFromSelectedCard(card));
+                MoveCards(sourceStack, stack, moveCards);
+            }
+            
             return true;
         }
 
