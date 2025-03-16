@@ -14,7 +14,7 @@ public class GameSceneManager : IInjectable
     {
         if (activeGameSceneNode != null)
         {
-            GD.PrintErr("game scene manager doesn't handle multiple game scene yet!!");
+            GD.PushError("game scene manager doesn't handle multiple game scene yet!!");
         }
 
         var gameSceneInstance = loadedScene.Instantiate();

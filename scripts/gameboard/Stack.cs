@@ -75,12 +75,55 @@ public class Stack
         }
     }
 
+    public void Shuffle()
+    {
+        //GD.Print("SHUFFLING FROM:");
+        foreach (Card card in cards)
+        {
+            //GD.Print("  " + card.Name);
+        }
+
+        var rng = new RandomNumberGenerator();
+
+        int n = Count;  
+        //GD.Print("    n is " + n);
+        //GD.Print("    m_cards count is " + m_cards.Count);
+        while (n > 1) 
+        {  
+            //GD.Print();
+            n--;  
+            //GD.Print("    n is " + n);
+            int k = rng.RandiRange(0, n - 1);
+            //GD.Print("    k is " + k);
+            if (k >= n)
+            {
+                k++;
+                //GD.Print("    k is " + k);
+            }
+            Card temp = m_cards[k];  
+            m_cards[k] = m_cards[n];  
+            m_cards[n] = temp;
+
+            //GD.Print("    current state is");
+            foreach (Card card in m_cards)
+                //GD.Print("      " + card.Name);
+        }
+
+        //GD.Print("SHUFFLING TO:");
+        foreach (Card card in cards)
+        {
+            //GD.Print("  " + card.Name);
+        }
+
+        InternalOnStackUpdated();
+    }
+
     public virtual bool CanDropSingleCard(Card dropCard)
     {
         if (IsEmpty)
             return dropCard.level == 13;
-        //GD.Print($"current drop card {dropCard.suit} {dropCard.level}");
-        //GD.Print($"current stack end card {CurrentEndCard.suit} {CurrentEndCard.level}");
+        ////GD.Print($"current drop card {dropCard.suit} {dropCard.level}");
+        ////GD.Print($"current stack end card {CurrentEndCard.suit} {CurrentEndCard.level}");
         
         return dropCard.suit.CanStackOnSuit(CurrentEndCard.suit) && dropCard.level == CurrentEndCard.level - 1;
     }
@@ -96,16 +139,26 @@ public class Stack
         return CanDropSingleCard(dropCards[^1]);
     }
 
-    public List<Card> GetStackSectionFromSelectedCard(Card selectedCard)
+    public List<Card> GetDraggableStackSectionFromSelectedCard(Card selectedCard)
     {
-        //GD.Print($"selectedcard {selectedCard.suit}{selectedCard.level}");
-        //GD.Print($"index {cards.IndexOf(selectedCard)}, lastindex {cards.Count - 1}");
+        ////GD.Print($"selectedcard {selectedCard.suit}{selectedCard.level}");
+        ////GD.Print($"index {cards.IndexOf(selectedCard)}, lastindex {cards.Count - 1}");
         int selectedCardIndex = m_cards.IndexOf(selectedCard);
         var dragCards = m_cards.GetRange(0, selectedCardIndex+1);//, cards.Count - selectedCardIndex);
 
-        //GD.Print($"drag count {dragCards.Count} {dragCards[0].suit}{dragCards[0].level}");
+        //if the selected card is flipped but one of the cards below it isn't, then there is no dragable section from this card
+        foreach (var card in dragCards)
+        {
+            if (!card.flipped)
+            {
+                dragCards.Clear();
+                break;
+            }
+        }
+
+        ////GD.Print($"drag count {dragCards.Count} {dragCards[0].suit}{dragCards[0].level}");
         //if (dragCards.Count > 1)
-            //GD.Print($"  {dragCards[1].suit}{dragCards[1].level}");
+            ////GD.Print($"  {dragCards[1].suit}{dragCards[1].level}");
 
         return dragCards;
     }

@@ -91,7 +91,7 @@ public class Tableau
             }
             else
             {
-                var moveCards = new Godot.Collections.Array<Card>(sourceStack.GetStackSectionFromSelectedCard(card));
+                var moveCards = new Godot.Collections.Array<Card>(sourceStack.GetDraggableStackSectionFromSelectedCard(card));
                 MoveCards(sourceStack, stack, moveCards);
             }
 

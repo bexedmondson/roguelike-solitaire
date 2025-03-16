@@ -32,14 +32,17 @@ public partial class CardStackUI : TextureRect
         OnDebugToggled();
         GameDebug.OnGameDebugToggled += OnDebugToggled;
 
-        cardContainer.ChildEnteredTree += OnChildAddedToContainer;
+        cardContainer.ChildEnteredTree += OnContainerChildAdded;
+        //cardContainer.ChildOrderChanged += OnContainerChildAdded;
     }
 
     public override void _ExitTree()
     {
         GameDebug.OnGameDebugToggled -= OnDebugToggled;
 
-        cardContainer.ChildEnteredTree -= OnChildAddedToContainer;
+        cardContainer.ChildEnteredTree -= OnContainerChildAdded;
+        //cardContainer.ChildOrderChanged -= OnContainerChildAdded;
+        this.stack.OnStackUpdated -= UpdateCardVisuals;
     }
 
     private void OnDebugToggled()
@@ -60,7 +63,7 @@ public partial class CardStackUI : TextureRect
     public virtual CardDrag GetDragData(CardUI selectedCardUI)
     {
         //TODO return empty if booster active
-        var dragCards = stack.GetStackSectionFromSelectedCard(selectedCardUI.card);
+        var dragCards = stack.GetDraggableStackSectionFromSelectedCard(selectedCardUI.card);
 
         foreach (CardUI cardUI in cardTextureRects)
         {
@@ -126,54 +129,64 @@ public partial class CardStackUI : TextureRect
         }
         //cardTextureRects.Clear();
 
-        if (stack.cards.Count == cardsWithUI.Count)
-            return;
-
-        foreach (Card card in stack.cards)
+        if (stack.cards.Count != cardsWithUI.Count)
         {
-            //GD.Print(card.Name);
-            if (cardsWithUI.Contains(card))
-                continue;
-
-            var cardControl = cardTextureRectScene.Instantiate<CardUI>();
-            cardControl.Setup(card, this);
-            cardContainer.AddChild(cardControl);
-            cardTextureRects.Add(cardControl);
-        }
-        //GD.PushWarning("end update card visuals " + this.Name);
-    }
-
-    private void OnChildAddedToContainer(Node node)
-    {
-        //GD.PushWarning("start child added to container " + this.Name);
-        var addedCardUI = node as CardUI;
-        addedCardUI.ItemRectChanged += () => OnCardReady(addedCardUI);
-        //GD.PushWarning("end child added to container " + this.Name + addedCardUI.card.Name);
-    }
-
-    private void OnCardReady(CardUI cardUI)
-    {
-        var children = cardContainer.GetChildren();
-
-        foreach (var containerChild in children)
-        {
-            //wait for children to all be ready before continuing
-            if (!containerChild.IsNodeReady())
+            foreach (Card card in stack.cards)
             {
-                GD.Print("child node not ready " + containerChild.Name);
-                return;
+                //GD.Print(card.Name);
+                if (cardsWithUI.Contains(card))
+                    continue;
+
+                var cardControl = cardTextureRectScene.Instantiate<CardUI>();
+                cardControl.Setup(card, this);
+                cardContainer.AddChild(cardControl);
+                cardTextureRects.Add(cardControl);
             }
         }
 
-        foreach (var containerChild in children)
+        UpdateSortOrder();
+
+        //GD.PushWarning("end update card visuals " + this.Name);
+    }
+
+    private void UpdateSortOrder()
+    {
+        //GD.PushWarning("start update sort order " + this.Name);
+        if (!GetAllCardUIsReady())
+            return;
+
+        var containerChildren = cardContainer.GetChildren();
+        foreach (var containerChild in containerChildren)
         {
             var childCardUI = containerChild as CardUI;
-            int index = children.Count - stack.cards.IndexOf(childCardUI.card) - 1;
+            int index = containerChildren.Count - stack.cards.IndexOf(childCardUI.card) - 1;
             //GD.Print($"moving {containerChild.Name} from position {containerChild.GetIndex()} to {index}");
             cardContainer.MoveChild(containerChild, index);
         }
+        
+        //GD.PushWarning("end update sort order " + this.Name);
+    }
 
-        //GD.PushWarning("start oncardready " + this.Name + cardUI.card.Name);
+    private void OnContainerChildAdded(Node addedNode)
+    {
+        //GD.PushWarning($"start {nameof(OnContainerChildAdded)} {this.Name}");
+        if (cardContainer.GetChildCount() == 0)
+            return;
+
+        var addedCardUI = addedNode as CardUI;
+        addedCardUI.ItemRectChanged += () => OnCardReadyUpdateSeparation(addedCardUI);
+
+        //GD.PushWarning($"end {nameof(OnContainerChildAdded)} {this.Name}");
+    }
+
+    private void OnCardReadyUpdateSeparation(CardUI cardUI)
+    {
+        if (!GetAllCardUIsReady())
+            return;
+
+        UpdateSortOrder();
+
+        //GD.PushWarning("start oncardready update separation " + this.Name + cardUI.card.Name);
         int separation = 0;
         if (forceCardsFullOverlap)
         {
@@ -190,6 +203,20 @@ public partial class CardStackUI : TextureRect
         }
 
         cardContainer.AddThemeConstantOverride("separation", separation);
-        //GD.PushWarning("end oncardready " + this.Name + cardUI.card.Name);
+        //GD.PushWarning("end oncardready update separation " + this.Name + cardUI.card.Name);
+    }
+
+    private bool GetAllCardUIsReady()
+    {
+        foreach (var containerChild in cardContainer.GetChildren())
+        {
+            //wait for children to all be ready before continuing
+            if (!containerChild.IsNodeReady())
+            {
+                GD.Print("child node not ready " + containerChild.Name);
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -11,7 +11,8 @@ public partial class BoosterToggleUI : Button
 
     public override void _Toggled(bool toggledOn)
     {
-        boosterManager.OnBoosterButtonToggled(toggledOn);
+        //TODO figure out nice way to put different boosters in here. maybe make this abstract and inherit? hmm
+        boosterManager.OnBoosterButtonToggled(new BoosterShuffleStack(), toggledOn);
         boosterManager.OnBoosterDeactivated += OnBoosterDeactivated;
     }
 

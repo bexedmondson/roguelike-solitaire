@@ -150,12 +150,17 @@ public partial class CardUI : Control
             return default(Variant);
         }
 
+        var stackDragData = cardStackUI.GetDragData(this);
+        
+        if (stackDragData == null || stackDragData.cards.Count == 0)
+        {
+            return default(Variant);
+        }
+
         float width = this.Size.X;
         var stackContainerPreview = stackContainerScene.Instantiate<StackDragUI>(); 
         stackContainerPreview.container.CustomMinimumSize = Vector2.One * width;
         stackContainerPreview.SetAnchorsPreset(LayoutPreset.TopRight);
-
-        var stackDragData = cardStackUI.GetDragData(this);
         for (int i = stackDragData.cards.Count - 1; i >= 0; i--)
         {
             Card card = stackDragData.cards[i];

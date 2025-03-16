@@ -17,21 +17,6 @@ public class DrawPile : Stack
         m_cards.Add(card);
     }
 
-    public void Shuffle()
-    {
-        var rng = new RandomNumberGenerator();
-
-        int n = Count;  
-        while (n > 1) 
-        {  
-            n--;  
-            int k = rng.RandiRange(0, n + 1);  
-            Card temp = m_cards[k];  
-            m_cards[k] = m_cards[n];  
-            m_cards[n] = temp;  
-        }
-    }
-
     public List<Card> DealCards(int count)
     {
         List<Card> dealtCards = new();
