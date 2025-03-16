@@ -105,7 +105,7 @@ public class Stack
             m_cards[n] = temp;
 
             //GD.Print("    current state is");
-            foreach (Card card in m_cards)
+            //foreach (Card card in m_cards)
                 //GD.Print("      " + card.Name);
         }
 
