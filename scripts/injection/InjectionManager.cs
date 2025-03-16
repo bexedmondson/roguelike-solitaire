@@ -39,7 +39,7 @@ public class InjectionManager
             return (T)injectableT;
         }
 
-        GD.PrintErr($"Injection of type {typeof(T)} failed!");
+        GD.PushError($"Injection of type {typeof(T)} failed!");
         return default(T);
     }
 

@@ -32,7 +32,7 @@ public class Foundation : Stack
     {
         if (dropCards.Count != 1)
         {
-            GD.PrintErr("Can only drop one card at a time on a foundation!");
+            GD.PushError("Can only drop one card at a time on a foundation!");
             return false;
         }
 
