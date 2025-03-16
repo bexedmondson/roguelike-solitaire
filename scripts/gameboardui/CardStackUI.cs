@@ -169,7 +169,7 @@ public partial class CardStackUI : TextureRect
         {
             var childCardUI = containerChild as CardUI;
             int index = children.Count - stack.cards.IndexOf(childCardUI.card) - 1;
-            GD.Print($"moving {containerChild.Name} from position {containerChild.GetIndex()} to {index}");
+            //GD.Print($"moving {containerChild.Name} from position {containerChild.GetIndex()} to {index}");
             cardContainer.MoveChild(containerChild, index);
         }
 
