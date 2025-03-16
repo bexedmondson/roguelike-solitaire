@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddhdnasqdfggj"]
+[gd_scene load_steps=8 format=3 uid="uid://ddhdnasqdfggj"]
 
 [ext_resource type="Texture2D" uid="uid://dm3x3inb6ufk8" path="res://textures/stack_backgrounds/stack_empty.tres" id="1_mus87"]
 [ext_resource type="Script" uid="uid://cwy8fiy8p6ahn" path="res://scripts/gameboardui/CardStackUI.cs" id="2_4rw1r"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ba05ixp123mv5" path="res://scripts/gameboardui/boosterui/BoosterStackUI.cs" id="4_gn3ww"]
 [ext_resource type="Script" uid="uid://b20337eyr56uq" path="res://scripts/utils/SliceScaleRect.gd" id="4_p7cx4"]
 [ext_resource type="Theme" uid="uid://c14llexa8ybhe" path="res://styles/blanktheme.tres" id="6_aqc3d"]
+[ext_resource type="Texture2D" uid="uid://bjew6deuyqfwp" path="res://textures/cards/card_highlight.tres" id="6_gn3ww"]
 
 [node name="Stack1" type="TextureRect" node_paths=PackedStringArray("cardContainer", "boosterStackUI")]
 texture_filter = 1
@@ -43,6 +44,7 @@ stackHighlight = NodePath("SliceScaleRect")
 boosterButton = NodePath("Button")
 
 [node name="SliceScaleRect" type="Container" parent="BoosterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,10 +54,19 @@ grow_vertical = 2
 script = ExtResource("4_p7cx4")
 metadata/_custom_type_script = "uid://b20337eyr56uq"
 
-[node name="TextureRect" type="TextureRect" parent="BoosterUI/SliceScaleRect"]
+[node name="TextureRect" type="NinePatchRect" parent="BoosterUI/SliceScaleRect"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("6_gn3ww")
+region_rect = Rect2(0, 0, 42, 60)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
 
 [node name="Button" type="Button" parent="BoosterUI"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
