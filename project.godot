@@ -32,6 +32,10 @@ project/assembly_name="roguelike-solitaire"
 
 enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg", "res://addons/label_font_auto_sizer/plugin.cfg")
 
+[gui]
+
+theme/custom_font="uid://cuvltowfpj57o"
+
 [rendering]
 
 renderer/rendering_method="mobile"
