@@ -99,49 +99,81 @@ public partial class CardStackUI : TextureRect
 
     protected void UpdateCardVisuals()
     {
+        //GD.PushWarning("start update card visuals " + this.Name);
         if (debugLabel != null)
             debugLabel.Text = stack != null ? stack.Count.ToString() : "0";
 
-        foreach (CardUI cardTextureRect in cardTextureRects)
-        {
-            cardTextureRect.QueueFree();
-        }
-        cardTextureRects.Clear();
+        List<Card> cardsWithUI = new();
 
-        if (stack.IsEmpty)
+        for (int i = cardTextureRects.Count - 1; i >= 0; i--)
+        {
+            var cardTextureRect = cardTextureRects[i];
+            Card textureRectCard = cardTextureRect.card;
+            if (!stack.cards.Contains(textureRectCard))
+            {
+                cardTextureRect.QueueFree();
+                cardTextureRects.RemoveAt(i);
+            }
+            else
+            {
+                cardTextureRect.UpdateCardFlipState();
+                cardsWithUI.Add(textureRectCard);
+            }
+        }
+        //cardTextureRects.Clear();
+
+        if (stack.cards.Count == cardsWithUI.Count)
             return;
 
         foreach (Card card in stack.cards)
         {
             //GD.Print(card.Name);
+            if (cardsWithUI.Contains(card))
+                continue;
 
             var cardControl = cardTextureRectScene.Instantiate<CardUI>();
             cardControl.Setup(card, this);
-            
-            if (card.flipped)
-                cardControl.textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/{card.suit.Name()}_{card.level}.tres");
-            else
-                cardControl.textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/card_back.tres");
-            
-            cardControl.MouseFilter = card.flipped ? MouseFilterEnum.Stop : MouseFilterEnum.Pass;
             cardContainer.AddChild(cardControl);
-            cardContainer.MoveChild(cardControl, 0);
             cardTextureRects.Add(cardControl);
         }
 
-        cardContainer.ChildEnteredTree += SetSeparation;
+        cardContainer.ChildEnteredTree += OnChildAddedToContainer;
+        //GD.PushWarning("end update card visuals " + this.Name);
     }
 
-    private void SetSeparation(Node node)
+    private void OnChildAddedToContainer(Node node)
     {
-        cardContainer.ChildEnteredTree -= SetSeparation;
+        //GD.PushWarning("start set separation " + this.Name);
+        cardContainer.ChildEnteredTree -= OnChildAddedToContainer;
 
-        var childControl = node as CardUI;
-        childControl.ItemRectChanged += () => OnCardReady(childControl);
+        var addedCardUI = node as CardUI;
+        addedCardUI.ItemRectChanged += () => OnCardReady(addedCardUI);
+        //GD.PushWarning("end set separation " + this.Name + addedCardUI.card.Name);
     }
 
     private void OnCardReady(CardUI cardUI)
     {
+        var children = cardContainer.GetChildren();
+
+        foreach (var containerChild in children)
+        {
+            //wait for children to all be ready before continuing
+            if (!containerChild.IsNodeReady())
+            {
+                GD.Print("child node not ready " + containerChild.Name);
+                return;
+            }
+        }
+
+        foreach (var containerChild in children)
+        {
+            var childCardUI = containerChild as CardUI;
+            int index = children.Count - stack.cards.IndexOf(childCardUI.card) - 1;
+            GD.Print($"moving {containerChild.Name} from position {containerChild.GetIndex()} to {index}");
+            cardContainer.MoveChild(containerChild, index);
+        }
+
+        //GD.PushWarning("start oncardready " + this.Name + cardUI.card.Name);
         int separation = 0;
         if (forceCardsFullOverlap)
         {
@@ -158,5 +190,6 @@ public partial class CardStackUI : TextureRect
         }
 
         cardContainer.AddThemeConstantOverride("separation", separation);
+        //GD.PushWarning("end oncardready " + this.Name + cardUI.card.Name);
     }
 }

@@ -9,6 +9,12 @@ public partial class DrawPileUI : CardStackUI
         if (tableau == null)
             tableau = InjectionManager.Get<TableauManager>().CurrentTableau;
 
+        foreach (var child in GetChildren())
+        {
+            if (!child.IsNodeReady())
+                return;
+        }
+
         //GD.Print("deck input");
         if (stack.IsEmpty)
         {

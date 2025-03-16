@@ -11,6 +11,7 @@ public class StateInitialiseShellSystems : AbstractState
         TableauManager tableauManager = new TableauManager();
         GameSceneManager gameSceneManager = new GameSceneManager();
         BoosterManager boosterManager= new BoosterManager();
+        MoveManager moveManager = new MoveManager();
 
         EndState();
     }

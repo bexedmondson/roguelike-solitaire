@@ -15,9 +15,11 @@ public class Tableau
     public DiscardPile discardPile;
 
     private ScoreManager scoreManager;
+    private MoveManager moveManager;
 
     public Tableau()
     {
+        moveManager = InjectionManager.Get<MoveManager>();
         scoreManager = InjectionManager.Get<ScoreManager>();
         scoreManager.ResetScore();
         scoreManager.SetScoreTracking(false);
@@ -92,7 +94,7 @@ public class Tableau
                 var moveCards = new Godot.Collections.Array<Card>(sourceStack.GetStackSectionFromSelectedCard(card));
                 MoveCards(sourceStack, stack, moveCards);
             }
-            
+
             return true;
         }
 
@@ -101,15 +103,30 @@ public class Tableau
 
     public void MoveCards(Stack sourceStack, Stack targetStack, Godot.Collections.Array<Card> cards)
     {
+        if (moveManager.IsMoveInProgress)
+        {
+            GD.Print("tried to move while move already in progress!");
+            return;
+        }
+
         //GD.Print($"on move, card count {cards.Count}");
+        moveManager.OnMovePerformed(sourceStack, targetStack, cards);
         sourceStack.RemoveCards(cards);
         targetStack.AddCards(cards);
         scoreManager.OnCardMoved(sourceStack, targetStack);
     }
 
+//TODO merge these two together, on reflection i think making an override here was a mistake
     public void MoveCards(Stack sourceStack, Stack targetStack, Card card)
     {
+        if (moveManager.IsMoveInProgress)
+        {
+            GD.Print("tried to move while move already in progress!");
+            return;
+        }
+
         //GD.Print($"on move, source {sourceStack.Name}, target {dropTarget}");
+        moveManager.OnMovePerformed(sourceStack, targetStack, new Godot.Collections.Array<Card>(){card});
         sourceStack.RemoveCards(card);
         targetStack.AddCards(card);
         scoreManager.OnCardMoved(sourceStack, targetStack);

@@ -30,6 +30,18 @@ public partial class CardUI : Control
     {
         this.card = card;
         this.cardStackUI = cardStackUI;
+
+        UpdateCardFlipState();
+    }
+
+    public void UpdateCardFlipState()
+    {
+        MouseFilter = card.flipped ? MouseFilterEnum.Stop : MouseFilterEnum.Pass;
+
+        if (card.flipped)
+            textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/{card.suit.Name()}_{card.level}.tres");
+        else
+            textureRect.Texture = GD.Load<Texture2D>($"res://textures/cards/card_back.tres");
     }
 
     public override void _EnterTree()
@@ -116,6 +128,17 @@ public partial class CardUI : Control
 
     private void OnCardDoubleClick()
     {
+        if (!this.card.flipped)
+        {
+            return;
+        }
+
+        foreach (var child in cardStackUI.GetChildren())
+        {
+            if (!child.IsNodeReady())
+                return;
+        }
+
         //GD.Print($"on card double click {card.Name} in stack {cardStackUI.Name}");
         tableau.TryAutoMoveCard(cardStackUI.stack, card);
     }
