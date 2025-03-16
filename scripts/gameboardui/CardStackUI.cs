@@ -31,11 +31,15 @@ public partial class CardStackUI : TextureRect
     {
         OnDebugToggled();
         GameDebug.OnGameDebugToggled += OnDebugToggled;
+
+        cardContainer.ChildEnteredTree += OnChildAddedToContainer;
     }
 
     public override void _ExitTree()
     {
         GameDebug.OnGameDebugToggled -= OnDebugToggled;
+
+        cardContainer.ChildEnteredTree -= OnChildAddedToContainer;
     }
 
     private void OnDebugToggled()
@@ -136,19 +140,15 @@ public partial class CardStackUI : TextureRect
             cardContainer.AddChild(cardControl);
             cardTextureRects.Add(cardControl);
         }
-
-        cardContainer.ChildEnteredTree += OnChildAddedToContainer;
         //GD.PushWarning("end update card visuals " + this.Name);
     }
 
     private void OnChildAddedToContainer(Node node)
     {
-        //GD.PushWarning("start set separation " + this.Name);
-        cardContainer.ChildEnteredTree -= OnChildAddedToContainer;
-
+        //GD.PushWarning("start child added to container " + this.Name);
         var addedCardUI = node as CardUI;
         addedCardUI.ItemRectChanged += () => OnCardReady(addedCardUI);
-        //GD.PushWarning("end set separation " + this.Name + addedCardUI.card.Name);
+        //GD.PushWarning("end child added to container " + this.Name + addedCardUI.card.Name);
     }
 
     private void OnCardReady(CardUI cardUI)
