@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dackwo5gts6w3"]
+[gd_scene load_steps=17 format=3 uid="uid://dackwo5gts6w3"]
 
 [ext_resource type="Script" uid="uid://cy6cxfoecx1m5" path="res://scripts/gameboardui/SolitaireGameUI.cs" id="1_e17pb"]
 [ext_resource type="PackedScene" uid="uid://devch01ty8fnq" path="res://scenes/foundation.tscn" id="1_jtt5i"]
@@ -13,7 +13,9 @@
 [ext_resource type="Script" uid="uid://bujpvimoqxdqp" path="res://scripts/gameboardui/DiscardPileUI.cs" id="6_6ebo5"]
 [ext_resource type="Script" uid="uid://ddxyfnmdknoar" path="res://scripts/debug/DebugButton.cs" id="11_6ebo5"]
 [ext_resource type="Script" uid="uid://byfwo2jwwn23u" path="res://scripts/gameboardui/ScoreUI.cs" id="11_kjea6"]
+[ext_resource type="Texture2D" uid="uid://d4jr5vhhkus5y" path="res://textures/boosters/shuffle_icon.png" id="14_nc2c3"]
 [ext_resource type="Script" uid="uid://cmw08tmbrx8vy" path="res://scripts/gameboardui/boosterui/BoosterToggleUI.cs" id="14_pdfg6"]
+[ext_resource type="Texture2D" uid="uid://kgahvy42svyb" path="res://textures/boosters/shuffle_booster_active.tres" id="15_uyb4x"]
 
 [node name="GameRound" type="Control" node_paths=PackedStringArray("stackUIs", "foundationUIs", "drawPileUI", "discardPileUI")]
 layout_mode = 3
@@ -269,17 +271,29 @@ offset_bottom = 8.0
 flat = true
 script = ExtResource("11_6ebo5")
 
-[node name="Button" type="Button" parent="."]
+[node name="BottomBar" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = -28.0
-offset_right = 38.0
-offset_bottom = -6.0
+anchor_left = 0.02
+anchor_top = 0.85
+anchor_right = 0.98
+anchor_bottom = 0.99
+grow_horizontal = 2
 grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.6
+anchor_bottom = 1.0
+
+[node name="ShuffleButton" type="TextureButton" parent="BottomBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 toggle_mode = true
+texture_normal = ExtResource("14_nc2c3")
+texture_pressed = ExtResource("15_uyb4x")
+ignore_texture_size = true
+stretch_mode = 4
 script = ExtResource("14_pdfg6")
 
 [connection signal="button_up" from="CardPiles/Draw/DrawPile/Button" to="CardPiles/Draw/DrawPile" method="OnClick"]

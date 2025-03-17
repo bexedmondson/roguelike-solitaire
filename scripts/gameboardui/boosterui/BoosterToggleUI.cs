@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class BoosterToggleUI : Button
+public partial class BoosterToggleUI : TextureButton
 {
     private BoosterManager boosterManager;
 
