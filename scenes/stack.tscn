@@ -8,7 +8,7 @@
 [ext_resource type="Theme" uid="uid://c14llexa8ybhe" path="res://styles/blanktheme.tres" id="6_aqc3d"]
 [ext_resource type="Texture2D" uid="uid://bjew6deuyqfwp" path="res://textures/cards/card_highlight.tres" id="6_gn3ww"]
 
-[node name="Stack1" type="TextureRect" node_paths=PackedStringArray("cardContainer", "boosterStackUI")]
+[node name="Stack1" type="TextureRect" node_paths=PackedStringArray("cardContainer", "tempCardContainer", "boosterStackUI")]
 texture_filter = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -22,6 +22,7 @@ stretch_mode = 4
 script = ExtResource("2_4rw1r")
 emptyTexture = ExtResource("1_mus87")
 cardContainer = NodePath("CardStackContainer")
+tempCardContainer = NodePath("CardStackContainer2")
 cardTextureRectScene = ExtResource("3_4rw1r")
 boosterStackUI = NodePath("BoosterUI")
 
@@ -30,6 +31,11 @@ layout_mode = 0
 anchor_right = 1.0
 grow_horizontal = 2
 theme_override_constants/separation = -80
+
+[node name="CardStackContainer2" type="Control" parent="."]
+anchors_preset = 0
+anchor_right = 1.0
+grow_horizontal = 2
 
 [node name="BoosterUI" type="Control" parent="." node_paths=PackedStringArray("stackHighlight", "boosterButton")]
 layout_mode = 1

@@ -1,12 +1,19 @@
+using System;
 using Godot;
 
 public partial class BoosterToggleUI : TextureButton
 {
+    [Export]
+    private Label countLabel;
+
     private BoosterManager boosterManager;
+    private InventoryManager inventoryManager;
 
     public override void _EnterTree()
     {
         boosterManager = InjectionManager.Get<BoosterManager>();
+        inventoryManager = InjectionManager.Get<InventoryManager>();
+        inventoryManager.OnBoosterCountChanged += OnBoosterCountChanged;
     }
 
     public override void _Toggled(bool toggledOn)
@@ -20,5 +27,14 @@ public partial class BoosterToggleUI : TextureButton
     {
         boosterManager.OnBoosterDeactivated -= OnBoosterDeactivated;
         this.SetPressedNoSignal(false);
+    }
+
+    private void OnBoosterCountChanged(Type type, int newCount)
+    {
+        if (type == typeof(BoosterShuffleStack))
+        {
+            countLabel.Text = newCount.ToString();
+            this.Disabled = newCount == 0;
+        }
     }
 }

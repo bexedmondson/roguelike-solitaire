@@ -4,32 +4,53 @@ using Godot;
 
 public class BoosterManager : IInjectable
 {
-    public event Action OnBoosterPrimed;
+    public event Action<AbstractBooster> OnBoosterPrimed;
     public event Action OnBoosterDeactivated;
 
-    private IBooster activeBooster;
+    private InventoryManager inventoryManager;
+
+    private AbstractBooster activeBooster;
 
     public BoosterManager()
     {
         InjectionManager.Register<BoosterManager>(this);
     }
 
-    public void OnBoosterButtonToggled(IBooster booster, bool toggleState)
+    public void OnBoosterButtonToggled<T>(T booster, bool toggleState) where T : AbstractBooster
     {
+        if (activeBooster != null && activeBooster.state == AbstractBooster.State.Activated)
+        {
+            GD.PushWarning("Cannot turn on or off a booster while one is activated! Current booster: " + activeBooster);
+            return;
+        }
+
         if (toggleState)
         {
+            if (activeBooster != null)
+                OnBoosterDeactivated?.Invoke();
+
+            if (inventoryManager == null)
+                inventoryManager = InjectionManager.Get<InventoryManager>();
+
+            if (inventoryManager.GetBoosterCount<T>() <= 0)
+            {
+                GD.PushWarning("No inventory for booster that's trying to activate! Current booster: " + activeBooster);
+                return;
+            }
+
             activeBooster = booster;
-            OnBoosterPrimed?.Invoke();
+            activeBooster.state = AbstractBooster.State.Primed;
+            OnBoosterPrimed?.Invoke(booster);
         }
         else
         {
-            activeBooster = null;
+            activeBooster.state = AbstractBooster.State.Deactivated;
             OnBoosterDeactivated?.Invoke();
+            activeBooster = null;
         }
     }
 
-    //TODO: change parameter to generic type mentioned in IBooster TODO
-    public void ProcessBooster(Stack stack)
+    public void ProcessBooster()
     {
         //GD.Print("booster process");
         if (activeBooster == null)
@@ -37,9 +58,9 @@ public class BoosterManager : IInjectable
             GD.PushError("trying to process booster but no booster active!");
             return;
         }
-
+        
         activeBooster.OnBoosterEffectComplete += OnBoosterEffectComplete;
-        activeBooster.DoBoosterEffect(stack);
+        activeBooster.DoBoosterEffect();
     }
 
     private void OnBoosterEffectComplete()

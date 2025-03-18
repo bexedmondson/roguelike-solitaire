@@ -12,6 +12,7 @@ public class StateInitialiseShellSystems : AbstractState
         GameSceneManager gameSceneManager = new GameSceneManager();
         BoosterManager boosterManager= new BoosterManager();
         MoveManager moveManager = new MoveManager();
+        InventoryManager inventoryManager = new InventoryManager();
 
         EndState();
     }

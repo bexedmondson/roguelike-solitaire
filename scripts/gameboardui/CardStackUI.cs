@@ -7,7 +7,10 @@ public partial class CardStackUI : TextureRect
     private Texture2D emptyTexture;
 
     [Export]
-    private Container cardContainer;
+    public Container cardContainer;
+
+    [Export]
+    public Control tempCardContainer;
 
     [Export]
     private bool forceCardsFullOverlap = false;
@@ -26,6 +29,7 @@ public partial class CardStackUI : TextureRect
     public Stack stack { get; protected set; }
 
     private List<CardUI> cardTextureRects = new();
+    public CardUI[] cardUIs => cardTextureRects.ToArray();
 
     public override void _EnterTree()
     {
@@ -54,7 +58,7 @@ public partial class CardStackUI : TextureRect
     public void InitialiseWithStack(Stack stack)
     {
         this.stack = stack;
-        boosterStackUI?.SetStack(stack);
+        boosterStackUI?.SetStack(stack, this);
 
         UpdateCardVisuals();
         this.stack.OnStackUpdated += UpdateCardVisuals;
@@ -106,7 +110,7 @@ public partial class CardStackUI : TextureRect
 
     protected void UpdateCardVisuals()
     {
-        //GD.PushWarning("start update card visuals " + this.Name);
+        GD.Print("start update card visuals " + this.Name);
         if (debugLabel != null)
             debugLabel.Text = stack != null ? stack.Count.ToString() : "0";
 

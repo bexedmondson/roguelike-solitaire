@@ -1,4 +1,5 @@
 
+using System;
 using Godot;
 
 public partial class BoosterStackUI : Control
@@ -10,7 +11,9 @@ public partial class BoosterStackUI : Control
     private Button boosterButton;
 
     private Stack stack;
+    private CardStackUI stackUI;
     private BoosterManager boosterManager;
+    private BoosterShuffleStack activeBooster;
 
     public override void _EnterTree()
     {
@@ -25,13 +28,19 @@ public partial class BoosterStackUI : Control
         boosterManager.OnBoosterDeactivated -= OnBoosterDeactivated;
     }
 
-    public void SetStack(Stack stack)
+    public void SetStack(Stack stack, CardStackUI stackUI)
     {
         this.stack = stack;
+        this.stackUI = stackUI;
     }
 
-    private void OnBoosterPrimed()
+    private void OnBoosterPrimed(AbstractBooster booster)
     {
+        if (booster is not BoosterShuffleStack boosterShuffleStack)
+            return;
+
+        activeBooster = boosterShuffleStack;
+
         //GD.Print("on primed");
         stackHighlight.SetProcess(true);
         stackHighlight.Visible = true;
@@ -40,19 +49,27 @@ public partial class BoosterStackUI : Control
         boosterButton.Visible = true;
     }
 
+    public void OnBoosterClick()
+    {
+        //GD.Print("booster click " + Name);
+        BoosterShuffleStackData boosterData = new BoosterShuffleStackData();
+        boosterData.stack = stack;
+        boosterData.cardStackUI = stackUI;
+
+        activeBooster.SetupBoosterData(boosterData);
+
+        boosterManager.ProcessBooster();
+    }
+
     private void OnBoosterDeactivated()
     {
         //GD.Print("on deactivate");
+        activeBooster = null;
+
         stackHighlight.SetProcess(false);
         stackHighlight.Visible = false;
 
         boosterButton.SetProcessInput(false);
         boosterButton.Visible = false;
-    }
-
-    public void OnBoosterClick()
-    {
-        //GD.Print("booster click " + Name);
-        boosterManager.ProcessBooster(stack);
     }
 }
